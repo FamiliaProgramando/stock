@@ -1,0 +1,12 @@
+Flask
+flask-admin
+flask-sqlalchemy
+flask-restful
+flask-login
+flask-wtf
+flask-shell-ipython
+Flask-Migrate
+wtforms[email]
+passlib
+psycopg2-binary
+

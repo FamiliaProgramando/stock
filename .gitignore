@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Custom
+.eslintrc.js
+.pylintrc
+*.sw[pon]
+.vagrant/
