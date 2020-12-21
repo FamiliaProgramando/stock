@@ -1,0 +1,119 @@
+CREATE DATABASE DBcerveceria;
+USE DBcerveceria;
+CREATE TABLE procesos (
+	id INT NOT NULL AUTO_INCREMENT,
+	nombre VARCHAR (25) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE clases (
+	id INT NOT NULL AUTO_INCREMENT,
+	nombre VARCHAR (25) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE insumos (
+        id INT NOT NULL AUTO_INCREMENT,
+        nombre VARCHAR (25) NOT NULL,
+        id_proceso INT NOT NULL,
+        id_clase INT NOT NULL,
+        marca VARCHAR (25) NOT NULL,
+        cantidad FLOAT NOT NULL,
+        unidad VARCHAR (25) NOT NULL,
+        stock FLOAT NOT NULL,
+        PRIMARY KEY(id),
+	FOREIGN KEY (id_proceso) REFERENCES procesos(id),
+	FOREIGN KEY (id_clase) REFERENCES clases(id)
+);
+
+
+CREATE TABLE proveedores (
+	id INT NOT NULL AUTO_INCREMENT,
+	nombre VARCHAR (25) NOT NULL,
+	telefono INT,
+	email VARCHAR (25),
+	web VARCHAR (25),
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE proveedores_insumos (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_insumo INT NOT NULL,
+	id_proveedor INT NOT NULL,
+	precio FLOAT NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_insumo) REFERENCES insumos(id),
+	FOREIGN KEY (id_proveedor) REFERENCES proveedores(id)
+);
+
+CREATE TABLE recetas (
+        id INT NOT NULL,
+        nombre VARCHAR (25) NOT NULL,
+        estilo VARCHAR (25) NOT NULL,
+	tipo VARCHAR (25) NOT NULL,
+	descripcion TEXT,
+	precio_litro FLOAT,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE recetas_insumos (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_insumo INT NOT NULL,
+	id_receta INT NOT NULL,
+	cantidad FLOAT NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_insumo) REFERENCES insumos(id),
+	FOREIGN KEY (id_receta) REFERENCES recetas(id)
+);
+
+CREATE TABLE lote (
+	id INT NOT NULL,
+	id_receta INT NOT NULL,
+	fecha_coccion DATETIME NOT NULL,
+	fecha_envasado DATETIME NOT NULL,
+	litros FLOAT NOT NULL,
+	observaciones TEXT NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_receta) REFERENCES recetas(id)
+);
+
+CREATE TABLE parametros (
+	id INT NOT NULL AUTO_INCREMENT,
+	nombre VARCHAR (25) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE parametros_recetas (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_parametro INT NOT NULL,
+	id_receta INT NOT NULL,
+	valor FLOAT NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_parametro) REFERENCES parametros(id),
+	FOREIGN KEY (id_receta) REFERENCES recetas(id)
+);
+
+INSERT INTO procesos(nombre) VALUES ('cocina');
+INSERT INTO procesos(nombre) VALUES ('envasado');
+INSERT INTO procesos(nombre) VALUES ('limpieza');
+
+INSERT INTO clases(nombre) VALUES ('granos');
+INSERT INTO clases(nombre) VALUES ('lupulo');
+INSERT INTO clases(nombre) VALUES ('levadura');
+INSERT INTO clases(nombre) VALUES ('sales');
+INSERT INTO clases(nombre) VALUES ('gas');
+INSERT INTO clases(nombre) VALUES ('azucar');
+INSERT INTO clases(nombre) VALUES ('tapitas');
+INSERT INTO clases(nombre) VALUES ('sanitizante');
+INSERT INTO clases(nombre) VALUES ('acido');
+INSERT INTO clases(nombre) VALUES ('base');
+INSERT INTO clases(nombre) VALUES ('detergente');
+INSERT INTO clases(nombre) VALUES ('esponja');
+
+INSERT INTO insumos(nombre, id_proceso, id_clase, marca, cantidad, unidad, stock) VALUES ('Malta_Pilsen','1','1','Cargil','25','kg','25');
+INSERT INTO insumos(nombre, id_proceso, id_clase, marca, cantidad, unidad, stock) VALUES ('Malta_Pala Ale','1','1','Cargil','25','kg','17');
+INSERT INTO insumos(nombre, id_proceso, id_clase, marca, cantidad, unidad, stock) VALUES ('Malta_Caramelo','1','1','Cargil','25','kg','10');
+INSERT INTO insumos(nombre, id_proceso, id_clase, marca, cantidad, unidad, stock) VALUES ('Azucar_Maiz','2','6', 'desconocida','5','kg','3');
+
+
+
