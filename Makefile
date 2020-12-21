@@ -4,7 +4,7 @@ install:
 	python3 -m venv ~/.venv
 	( \
 		source ~/.venv/bin/activate; \
-		pip install -e . \
+		pip install -e .; \
 		pip check; \
 	)
 
@@ -17,7 +17,7 @@ shell:
 	FLASK_APP=stock/app flask shell
 
 run:
-	FLASK_APP=stock/app FLASK_ENV=development flask run --host=0.0.0.0
+	FLASK_APP=stock/app flask run --host=0.0.0.0
 
 clean:
 	@find . -name '*.py[co]' -exec rm --force {} \;

@@ -9,4 +9,5 @@ Flask-Migrate
 wtforms[email]
 passlib
 psycopg2-binary
+python-dotenv
 
