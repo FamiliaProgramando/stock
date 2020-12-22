@@ -1,7 +1,7 @@
 from stock.ext.db import db
 
 proveedor_insumo = db.Table(
-    "proveedor_insumo", db.Column("precio", db.Decimal(10, 2), nullable=False),
+    "proveedor_insumo", db.Column("precio", db.Numeric(10, 2), nullable=False),
     db.Column("proveedor_id",
               db.Integer,
               db.ForeignKey("proveedor.id"),
@@ -52,7 +52,7 @@ class Insumo(db.Model):
     nombre = db.Column("nombre", db.String(25), nullable=False, unique=True)
     marca = db.Column("marca", db.String(25))
     cantidad = db.Column("cantidad", db.Integer(), nullable=False)
-    unidad = db.Column("unidad", db.Enum("kg", "gr", "ltr", "ml"))
+    unidad = db.Column("unidad", db.Enum("kg", "gr", "ltr", "ml", name="unidades"))
     stock = db.Column("stock", db.Integer(), nullable=False)
 
     proveedores = db.relationship("Proveedor",
