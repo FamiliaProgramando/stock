@@ -41,6 +41,15 @@ class Proveedor(db.Model):
     email = db.Column("email", db.String(255), unique=True)
     pagina = db.Column("pagina", db.String(255), unique=True)
 
+    def json(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "telefono": self.telefono,
+            "email": self.email,
+            "pagina": self.pagina,
+        }
+
     def __repr__(self):
         return f"{self.nombre}"
 
@@ -52,7 +61,8 @@ class Insumo(db.Model):
     nombre = db.Column("nombre", db.String(25), nullable=False, unique=True)
     marca = db.Column("marca", db.String(25))
     cantidad = db.Column("cantidad", db.Integer(), nullable=False)
-    unidad = db.Column("unidad", db.Enum("kg", "gr", "ltr", "ml", name="unidades"))
+    unidad = db.Column("unidad",
+                       db.Enum("kg", "gr", "ltr", "ml", name="unidades"))
     stock = db.Column("stock", db.Integer(), nullable=False)
 
     proveedores = db.relationship("Proveedor",
