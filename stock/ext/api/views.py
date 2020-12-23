@@ -1,4 +1,6 @@
 from flask_restful import Resource, reqparse
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm.exc import UnmappedInstanceError
 from .models import Insumo, Proceso, Proveedor, proveedor_insumo, TipoInsumo
 from stock.ext.db import db
 
@@ -18,17 +20,10 @@ class ApiProveedor(Resource):
                             type=str,
                             required=True,
                             help="Campo obligatorio!")
-        parser.add_argument("telefono",
-                            type=str,
-                            help="Formato texto esperado!")
-        parser.add_argument("email",
-                            type=str,
-                            help="Formato texto esperado!")
-        parser.add_argument("pagina",
-                            type=str,
-                            help="Formato texto esperado!")
+        parser.add_argument("telefono", type=str)
+        parser.add_argument("email", type=str)
+        parser.add_argument("pagina", type=str)
         data = parser.parse_args()
-        print(data)
 
         proveedor = Proveedor(
             nombre=data["nombre"],
@@ -44,13 +39,49 @@ class ApiProveedor(Resource):
 
 class ApiProveedorId(Resource):
     def get(self, proveedor_id):
-        ...
+        try:
+            proveedor = Proveedor.query.get(proveedor_id)
+            return {"resource": proveedor.json()}
+        except AttributeError:
+            return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
 
     def put(self, proveedor_id):
-        ...
+        parser = reqparse.RequestParser()
+        parser.add_argument("nombre", type=str)
+        parser.add_argument("telefono", type=str)
+        parser.add_argument("email", type=str)
+        parser.add_argument("pagina", type=str)
+
+        data = parser.parse_args()
+
+        try:
+            proveedor = Proveedor.query.get(proveedor_id)
+
+            proveedor.nombre = (data["nombre"]
+                                if data["nombre"] else proveedor.nombre)
+            proveedor.telefono = (data["telefono"]
+                                  if data["telefono"] else proveedor.telefono)
+            proveedor.email = (data["email"]
+                               if data["email"] else proveedor.email)
+            proveedor.pagina = (data["pagina"]
+                                if data["pagina"] else proveedor.pagina)
+
+            db.session.add(proveedor)
+            db.session.commit()
+            return {"updated": proveedor.json()}
+
+        except (AttributeError, IntegrityError):
+            return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
 
     def delete(self, proveedor_id):
-        ...
+        try:
+            proveedor = Proveedor.query.get(proveedor_id)
+            db.session.delete(proveedor)
+            db.session.commit()
+            return {"deleted": proveedor.json()}
+
+        except (IntegrityError, UnmappedInstanceError):
+            return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
 
 
 class ApiProceso(Resource):
