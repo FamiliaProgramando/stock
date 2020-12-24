@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import UnmappedInstanceError
-from .models import Insumo, Proceso, Proveedor, proveedor_insumo, TipoInsumo
+from .models import Insumo, Proceso, Proveedor, InsumoProveedor, TipoInsumo
 from stock.ext.db import db
 
 HTTP_RESPONSE_CREATED = 201

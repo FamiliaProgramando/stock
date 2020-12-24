@@ -1,16 +1,5 @@
 from stock.ext.db import db
 
-proveedor_insumo = db.Table(
-    "proveedor_insumo", db.Column("precio", db.Numeric(10, 2), nullable=False),
-    db.Column("proveedor_id",
-              db.Integer,
-              db.ForeignKey("proveedor.id"),
-              primary_key=True),
-    db.Column("insumo_id",
-              db.Integer,
-              db.ForeignKey("insumo.id"),
-              primary_key=True))
-
 
 class Proceso(db.Model):
     __tablename__ = "proceso"
@@ -41,6 +30,13 @@ class Proveedor(db.Model):
     email = db.Column("email", db.String(255), unique=True)
     pagina = db.Column("pagina", db.String(255), unique=True)
 
+    insumos = db.relationship("InsumoProveedor", back_populates="proveedor")
+
+    # insumo = db.relationship("Insumo",
+    #                          secondary="insumo_proveedor",
+    #                          lazy="subquery",
+    #                          backref=db.backref("proveedores", lazy=True))
+
     def json(self):
         return {
             "id": self.id,
@@ -65,10 +61,11 @@ class Insumo(db.Model):
                        db.Enum("kg", "gr", "ltr", "ml", name="unidades"))
     stock = db.Column("stock", db.Integer(), nullable=False)
 
-    proveedores = db.relationship("Proveedor",
-                                  secondary=proveedor_insumo,
-                                  lazy="subquery",
-                                  backref=db.backref("insumos", lazy=True))
+    proveedores = db.relationship("InsumoProveedor", back_populates="insumo")
+    # proveedores = db.relationship("Proveedor",
+    #                               secondary="insumo_proveedor",
+    #                               lazy="subquery",
+    #                               backref=db.backref("insumos", lazy=True))
 
     tipo_insumo_id = db.Column("tipo_insumo_id",
                                db.Integer,
@@ -91,3 +88,21 @@ class Insumo(db.Model):
 
     def __repr__(self):
         return f"{self.nombre}"
+
+
+class InsumoProveedor(db.Model):
+    __tablename__ = "insumo_proveedor"
+
+    insumo_id = db.Column("insumo_id",
+                          db.Integer,
+                          db.ForeignKey("insumo.id"),
+                          primary_key=True)
+    insumo = db.relationship("Insumo", back_populates="proveedores")
+
+    proveedor_id = db.Column("proveedor_id",
+                             db.Integer,
+                             db.ForeignKey("proveedor.id"),
+                             primary_key=True)
+    proveedor = db.relationship("Proveedor", back_populates="insumos")
+
+    precio = db.Column("precio", db.Numeric(10, 2), nullable=False)

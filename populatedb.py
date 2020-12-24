@@ -1,7 +1,7 @@
 # from flask import current_app
 from stock.app import create_app
 from stock.ext.api.models import (Insumo, Proceso, Proveedor, TipoInsumo,
-                                  proveedor_insumo)
+                                  InsumoProveedor)
 from stock.ext.db import db
 
 procesos = [
@@ -47,16 +47,18 @@ app = create_app()
 with app.app_context():
     for proceso in procesos:
         db.session.add(proceso)
-    db.session.commit()
 
     for tipo in tipos_insumo:
         db.session.add(tipo)
-    db.session.commit()
 
     for proveedor in proveedores:
         db.session.add(proveedor)
-    db.session.commit()
 
     for insumo in insumos:
         db.session.add(insumo)
+
+    asoc = InsumoProveedor(precio=12.75)
+    asoc.proveedor = proveedores[0]
+    insumos[0].proveedores.append(asoc)
+
     db.session.commit()
