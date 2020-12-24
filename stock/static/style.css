@@ -1,0 +1,265 @@
+/* generales */
+* {padding: 0;
+    margin: 0;  
+    box-sizing: border-box;  
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;       
+    height: 100vh;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Cabecera */
+
+#header {
+    width: 100%;  
+    height: 60px;
+    background-color: #7fd38b; 
+    color: rgb(16, 56, 18);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    padding: 0.3em 0.7em;
+    top:0;
+}
+ 
+.menuItem {
+    padding: 0 0.7em;
+}
+
+#tituloCabecera {
+    font-size: 1em;   
+    font-weight: 2;
+    font-family: Verdana, Tahoma, sans-serif;
+    display: inline-block; 
+    flex-shrink: 0; 
+    font-weight: 400;
+    line-height: 1.3em;
+    text-align: left;
+}
+
+#cierreMenu {
+    display: none;
+}  
+#home {
+    margin-left: auto;
+}
+
+
+#navbar {
+    width: 100%;  
+    background-color: rgb(79, 116, 85);  
+    background: linear-gradient(135deg, #5a8f58 , #3c5837 99%);
+    height: 40px;
+    color: rgba(255, 255, 255, 1);
+    font-size: 1.5em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    padding: 2px;
+    top: 60px;
+    box-shadow: 0px 5px 5px rgba(189, 189, 189, 0.75);
+}
+
+#navMenu {     
+    display: inline-block;
+    width: fit-content ;
+    font-size: 0.5em;
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+.navItem {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 1);
+    display: inline-block;
+    padding: 10px;
+}
+
+.navItem a:visited{
+    color: rgba(255, 255, 255, 1);
+}
+
+.navItem a:active{
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.navItem a:link {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+
+
+/* Main */
+
+#main {
+    width: 100%;
+    padding: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 100px;
+    align-content: flex-start
+
+}
+
+/* footer */
+
+#footer{
+    width: 100%; 
+    height: 60px;
+    background-color: #7fd38b; 
+    color: rgb(16, 56, 18);
+    text-align: center;
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;    
+    padding: 0.3em 0.7em;
+    position: fixed;
+    bottom: 0;
+}
+
+#footerLogo {
+    height: 60%;    
+    display: inline-block; 
+    position: relative;     
+    border-radius: 50%;    
+}
+
+#contenedorFooterLogo{
+    display: flex;
+    height: 100%;  
+    align-items: center; 
+    justify-content: center;
+}
+
+#infoFooter {
+    text-align: center;
+}
+
+#redesFooter {
+    text-align: right;
+    font-size: 1.3em;
+    padding: 5px 2px;
+    display:inline-block;
+}
+
+#footer h5 {
+    font-size: 0.6em;
+    text-transform: uppercase; 
+}
+
+#footer p {    
+    display:none;
+    font-size: 0.8em;
+    padding: 5px;    
+}
+
+#footer a:visited{
+    color: rgb(16, 56, 18);
+}
+#footer  a:link {
+    color: rgb(16, 56, 18);
+}
+
+@media screen and (max-width: 250px) {
+  
+    #tituloCabecera {
+        display: none;
+    }
+
+    #navbar {
+        flex-wrap: wrap; 
+        height: fit-content;
+    }
+
+    .navItem {
+        display: block;
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 480px) {
+  
+    #navMenu {
+        font-size: 0.7em;  
+    }
+
+    #header {
+        font-size: 1.3em;
+    }
+
+    #footer {
+        font-size: 1.3em;
+    }
+
+}
+
+
+@media screen and (min-width: 680px) {
+
+    #navbar {
+        justify-content: start;
+    }
+
+    #logoCabecera {
+        height: 80%;
+    }
+
+    #navMenu {
+        font-size: 0.8em;  
+    }
+
+    #footerLogo {
+        height: 80%;
+    }
+
+    #header {
+        font-size: 1.5em;    
+    }
+
+    #footer {
+        font-size: 1.5em;
+    }
+
+
+}
+
+@media screen and (min-width: 1020px) {
+  
+    #navbar {
+        justify-content: start;
+    }
+
+    #logoCabecera {
+        height: 80%;
+    }
+
+    #navMenu {
+        font-size: 0.8em;  
+    }
+
+    #footerLogo {
+        height: 80%;
+    }
+
+    #header {
+        font-size: 1.5em;    
+    }
+
+    #footer {
+        font-size: 1.5em;
+    }
+
+}
