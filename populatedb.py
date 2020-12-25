@@ -1,46 +1,44 @@
-# from flask import current_app
+from random import random, randint, choice
+from faker import Faker
+
 from stock.app import create_app
-from stock.ext.api.models import (Insumo, Proceso, Proveedor, TipoInsumo,
-                                  InsumoProveedor)
+from stock.ext.api.models import (Insumo, InsumoProveedor, Proceso, Proveedor,
+                                  TipoInsumo, UNIDADES)
 from stock.ext.db import db
 
+fake = Faker("es_ES")
+
 procesos = [
-    Proceso(nombre="cocina"),
-    Proceso(nombre="envazado"),
-    Proceso(nombre="limpieza"),
+    Proceso(nombre=nombre) for nombre in ("cocina", "envazado", "limpieza")
 ]
-
 tipos_insumo = [
-    TipoInsumo(nombre="lúpulo"),
-    TipoInsumo(nombre="gas"),
-    TipoInsumo(nombre="granos"),
-    TipoInsumo(nombre="sales"),
-    TipoInsumo(nombre="levadura"),
-    TipoInsumo(nombre="tapitas"),
-    TipoInsumo(nombre="azúcar"),
-    TipoInsumo(nombre="detergente"),
-    TipoInsumo(nombre="sanitizante"),
-    TipoInsumo(nombre="esponjita"),
-    TipoInsumo(nombre="base"),
-    TipoInsumo(nombre="ácido"),
+    TipoInsumo(nombre=nombre)
+    for nombre in ("lúpulos", "gas", "granos", "sales", "levaduras", "tapitas",
+                   "azúcares", "detergentes", "sanitizantes", "esponjas",
+                   "bases", "ácidos")
 ]
 
-proveedores = [
-    Proveedor(nombre="Fulano de Tal",
-              telefono="9 456 1234",
-              email="fulano@gmail.com",
-              pagina="http://fulano.com"),
-]
+proveedores = []
 
-insumos = [
-    Insumo(nombre="Amethist",
-           marca="Amth",
-           cantidad=250,
-           unidad="gr",
-           stock=12,
-           tipo_insumo=tipos_insumo[0],
-           proceso=procesos[0]),
-]
+for _ in range(15):
+    profile = fake.profile()
+    proveedores.append(
+        Proveedor(nombre=profile["name"],
+                  telefono=fake.phone_number(),
+                  email=profile["mail"],
+                  pagina=profile["website"][0]))
+
+insumos = []
+
+for _ in range(35):
+    insumos.append(
+        Insumo(nombre=fake.company(),
+               marca=fake.word().capitalize(),
+               cantidad=randint(1, 100),
+               unidad=choice(UNIDADES),
+               stock=randint(1, 100),
+               tipo_insumo=choice(tipos_insumo),
+               proceso=choice(procesos)))
 
 app = create_app()
 
@@ -56,9 +54,8 @@ with app.app_context():
 
     for insumo in insumos:
         db.session.add(insumo)
-
-    asoc = InsumoProveedor(precio=12.75)
-    asoc.proveedor = proveedores[0]
-    insumos[0].proveedores.append(asoc)
+        asoc = InsumoProveedor(precio=random() * 100)
+        asoc.proveedor = choice(proveedores)
+        insumo.proveedores.append(asoc)
 
     db.session.commit()
