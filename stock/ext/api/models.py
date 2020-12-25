@@ -1,11 +1,13 @@
 from stock.ext.db import db
 
+UNIDADES = ["kg", "gr", "ltr", "ml"]
+
 
 class Proceso(db.Model):
     __tablename__ = "proceso"
 
     id = db.Column("id", db.Integer, primary_key=True)
-    nombre = db.Column("nombre", db.String(25), nullable=False, unique=True)
+    nombre = db.Column("nombre", db.String(50), nullable=False, unique=True)
 
     def __repr__(self):
         return f"{self.nombre}"
@@ -15,7 +17,7 @@ class TipoInsumo(db.Model):
     __tablename__ = "tipo_insumo"
 
     id = db.Column("id", db.Integer, primary_key=True)
-    nombre = db.Column("nombre", db.String(25), nullable=False, unique=True)
+    nombre = db.Column("nombre", db.String(50), nullable=False, unique=True)
 
     def __repr__(self):
         return f"{self.nombre}"
@@ -25,8 +27,8 @@ class Proveedor(db.Model):
     __tablename__ = "proveedor"
 
     id = db.Column("id", db.Integer, primary_key=True)
-    nombre = db.Column("nombre", db.String(25), nullable=False, unique=True)
-    telefono = db.Column("telefono", db.String(25), unique=True)
+    nombre = db.Column("nombre", db.String(50), nullable=False, unique=True)
+    telefono = db.Column("telefono", db.String(50), unique=True)
     email = db.Column("email", db.String(255), unique=True)
     pagina = db.Column("pagina", db.String(255), unique=True)
 
@@ -54,11 +56,11 @@ class Insumo(db.Model):
     __tablename__ = "insumo"
 
     id = db.Column("id", db.Integer, primary_key=True)
-    nombre = db.Column("nombre", db.String(25), nullable=False, unique=True)
-    marca = db.Column("marca", db.String(25))
+    nombre = db.Column("nombre", db.String(50), nullable=False, unique=True)
+    marca = db.Column("marca", db.String(50))
     cantidad = db.Column("cantidad", db.Integer(), nullable=False)
     unidad = db.Column("unidad",
-                       db.Enum("kg", "gr", "ltr", "ml", name="unidades"))
+                       db.Enum(*UNIDADES, name="unidades"))
     stock = db.Column("stock", db.Integer(), nullable=False)
 
     proveedores = db.relationship("InsumoProveedor", back_populates="insumo")
