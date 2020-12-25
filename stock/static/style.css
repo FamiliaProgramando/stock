@@ -37,6 +37,18 @@ a {
     padding: 0 0.7em;
 }
 
+.menuItem a:visited{
+    color: rgb(16, 56, 18);
+}
+
+.menuItem a:active{
+    color: rgb(16, 56, 18);
+}
+
+.menuItem a:link {
+    color:rgb(16, 56, 18);
+}
+
 #tituloCabecera {
     font-size: 1em;   
     font-weight: 2;
@@ -107,10 +119,31 @@ a {
     width: 100%;
     padding: 2em;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-top: 100px;
     align-content: flex-start
 
+}
+
+.select_receta {
+    background-color: #7fd38b; 
+    color: rgb(16, 56, 18);
+    padding: 5px 10px;
+    width: max-content;
+    border: 2px solid;
+    border-color: transparent transparen pink black;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    cursor: pointer;
+}
+
+.select_item {
+    padding: 0px 5px;
+}
+
+.desplegado {
+    
 }
 
 /* footer */
