@@ -2,6 +2,7 @@ from random import choice, randint, random
 
 from faker import Faker
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm.exc import FlushError
 
 from stock.app import create_app
 from stock.ext.api.models import (UNIDADES, Insumo, InsumoProveedor, Proceso,
@@ -28,6 +29,7 @@ def main():
 
         insu_n = 35 - len(Insumo.query.all())
         prov_n = 15 - len(Proveedor.query.all())
+        asoc_n = 40 - len(InsumoProveedor.query.all())
 
         for proceso in procesos:
             try:
@@ -76,7 +78,8 @@ def main():
         insumos = Insumo.query.all()
         proveedores = Proveedor.query.all()
 
-        for insumo in insumos[:-3]:
+        while asoc_n > 0:
+            insumo = choice(insumos)
             proveedor = choice(proveedores)
 
             if proveedor not in insumo.proveedores:
@@ -86,8 +89,10 @@ def main():
                 try:
                     db.session.add(insumo)
                     db.session.commit()
-                except IntegrityError:
+                except (IntegrityError, FlushError):
                     db.session.rollback()
+                else:
+                    asoc_n -= 1
 
 
 if __name__ == "__main__":
