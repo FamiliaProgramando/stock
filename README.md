@@ -21,3 +21,11 @@ make initdb
 make run
 http://localhost:5000
 ```
+
+## Finalizar
+
+```bash
+Ctrl+C
+exit
+vagrant halt
+```
