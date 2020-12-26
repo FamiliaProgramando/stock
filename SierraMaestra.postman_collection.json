@@ -70,6 +70,82 @@
 			"response": []
 		},
 		{
+			"name": "/api/version/insumo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/tipo_insumo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/tipo_insumo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"tipo_insumo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/proceso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/proceso",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"proceso"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/insumo_proveedor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo_proveedor",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo_proveedor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/api/version/proveedor",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
@@ -115,6 +191,186 @@
 			"response": []
 		},
 		{
+			"name": "/api/version/insumo",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"La Campagnolla\",\n\t\"marca\": \"Leirithier\",\n    \"cantidad\": \"45\",\n    \"unidad\": \"gr\",\n    \"stock\": \"9\",\n    \"tipo_insumo_id\": \"37\",\n    \"proceso_id\": \"7\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/tipo_insumo",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"cosa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/tipo_insumo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"tipo_insumo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/proceso",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Fiesta\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/proceso",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"proceso"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/insumo_proveedor",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"insumo_id\": 1,\n    \"proveedor_id\": 46,\n    \"precio\": 33.90\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo_proveedor",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo_proveedor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/api/version/proveedor/id",
 			"request": {
 				"method": "GET",
@@ -129,6 +385,66 @@
 						"{{version}}",
 						"proveedor",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/insumo/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo/42",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo",
+						"42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/tipo_insumo/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/tipo_insumo/46",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"tipo_insumo",
+						"46"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/proceso/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/proceso/10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"proceso",
+						"10"
 					]
 				}
 			},
@@ -175,6 +491,126 @@
 			"response": []
 		},
 		{
+			"name": "/api/version/insumo/id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"cantidad\": 21\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo/42",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo",
+						"42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/tipo_insumo/id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"caramelos\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/tipo_insumo/49",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"tipo_insumo",
+						"49"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/proceso/id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"venta\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/proceso/10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"proceso",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/api/version/proveedor/id",
 			"request": {
 				"auth": {
@@ -203,6 +639,108 @@
 						"{{version}}",
 						"proveedor",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/insumo/id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo/42",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo",
+						"42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/tipo_insumo/id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/tipo_insumo/49",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"tipo_insumo",
+						"49"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/version/proceso/id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/proceso/10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"proceso",
+						"10"
 					]
 				}
 			},
