@@ -88,6 +88,18 @@ class Insumo(db.Model):
                                                  cascade="all, delete-orphan",
                                                  lazy=True))
 
+    def json(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "marca": self.marca,
+            "cantidad": self.cantidad,
+            "unidad": self.unidad,
+            "stock": self.stock,
+            "tipo_insumo": self.tipo_insumo.nombre,
+            "proceso": self.proceso.nombre,
+        }
+
     def __repr__(self):
         return f"{self.nombre}"
 

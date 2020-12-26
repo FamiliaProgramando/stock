@@ -32,8 +32,8 @@ insumos = []
 
 for _ in range(35):
     insumos.append(
-        Insumo(nombre=fake.company(),
-               marca=fake.word().capitalize(),
+        Insumo(nombre=fake.word().capitalize(),
+               marca=fake.company(),
                cantidad=randint(1, 100),
                unidad=choice(UNIDADES),
                stock=randint(1, 100),
