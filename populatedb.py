@@ -1,61 +1,94 @@
-from random import random, randint, choice
+from random import choice, randint, random
+
 from faker import Faker
+from sqlalchemy.exc import IntegrityError
 
 from stock.app import create_app
-from stock.ext.api.models import (Insumo, InsumoProveedor, Proceso, Proveedor,
-                                  TipoInsumo, UNIDADES)
+from stock.ext.api.models import (UNIDADES, Insumo, InsumoProveedor, Proceso,
+                                  Proveedor, TipoInsumo)
 from stock.ext.db import db
 
-fake = Faker("es_ES")
 
-procesos = [
-    Proceso(nombre=nombre) for nombre in ("cocina", "envazado", "limpieza")
-]
-tipos_insumo = [
-    TipoInsumo(nombre=nombre)
-    for nombre in ("lúpulos", "gas", "granos", "sales", "levaduras", "tapitas",
-                   "azúcares", "detergentes", "sanitizantes", "esponjas",
-                   "bases", "ácidos")
-]
+def main():
+    app = create_app()
+    fake = Faker("es_ES")
 
-proveedores = []
+    procesos = [
+        Proceso(nombre=nombre) for nombre in ("cocina", "envazado", "limpieza")
+    ]
 
-for _ in range(15):
-    profile = fake.profile()
-    proveedores.append(
-        Proveedor(nombre=profile["name"],
-                  telefono=fake.phone_number(),
-                  email=profile["mail"],
-                  pagina=profile["website"][0]))
+    tipos_insumo = [
+        TipoInsumo(nombre=nombre)
+        for nombre in ("lúpulos", "gas", "granos", "sales", "levaduras",
+                       "tapitas", "azúcares", "detergentes", "sanitizantes",
+                       "esponjas", "bases", "ácidos")
+    ]
 
-insumos = []
+    with app.app_context():
 
-for _ in range(35):
-    insumos.append(
-        Insumo(nombre=fake.word().capitalize(),
-               marca=fake.company(),
-               cantidad=randint(1, 100),
-               unidad=choice(UNIDADES),
-               stock=randint(1, 100),
-               tipo_insumo=choice(tipos_insumo),
-               proceso=choice(procesos)))
+        insu_n = 35 - len(Insumo.query.all())
+        prov_n = 15 - len(Proveedor.query.all())
 
-app = create_app()
+        for proceso in procesos:
+            try:
+                db.session.add(proceso)
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
 
-with app.app_context():
-    for proceso in procesos:
-        db.session.add(proceso)
+        for tipo in tipos_insumo:
+            try:
+                db.session.add(tipo)
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
 
-    for tipo in tipos_insumo:
-        db.session.add(tipo)
+        while insu_n > 0:
+            insumo = Insumo(nombre=fake.word().capitalize(),
+                            marca=fake.company(),
+                            cantidad=randint(1, 100),
+                            unidad=choice(UNIDADES),
+                            stock=randint(1, 100),
+                            tipo_insumo=choice(TipoInsumo.query.all()),
+                            proceso=choice(Proceso.query.all()))
+            try:
+                db.session.add(insumo)
+                db.session.commit()
+            except IntegrityError as err:
+                db.session.rollback()
+            else:
+                insu_n -= 1
 
-    for proveedor in proveedores:
-        db.session.add(proveedor)
+        while prov_n > 0:
+            profile = fake.profile()
+            proveedor = Proveedor(nombre=profile["name"],
+                                  telefono=fake.phone_number(),
+                                  email=profile["mail"],
+                                  pagina=profile["website"][0])
+            try:
+                db.session.add(proveedor)
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+            else:
+                prov_n -= 1
 
-    for insumo in insumos:
-        db.session.add(insumo)
-        asoc = InsumoProveedor(precio=random() * 100)
-        asoc.proveedor = choice(proveedores)
-        insumo.proveedores.append(asoc)
+        insumos = Insumo.query.all()
+        proveedores = Proveedor.query.all()
 
-    db.session.commit()
+        for insumo in insumos[:-3]:
+            proveedor = choice(proveedores)
+
+            if proveedor not in insumo.proveedores:
+                asoc = InsumoProveedor(precio=random() * 100)
+                asoc.proveedor = proveedor
+                insumo.proveedores.append(asoc)
+                try:
+                    db.session.add(insumo)
+                    db.session.commit()
+                except IntegrityError:
+                    db.session.rollback()
+
+
+if __name__ == "__main__":
+    main()

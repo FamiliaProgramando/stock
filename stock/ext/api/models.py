@@ -9,6 +9,12 @@ class Proceso(db.Model):
     id = db.Column("id", db.Integer, primary_key=True)
     nombre = db.Column("nombre", db.String(50), nullable=False, unique=True)
 
+    def json(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+        }
+
     def __repr__(self):
         return f"{self.nombre}"
 
@@ -18,6 +24,12 @@ class TipoInsumo(db.Model):
 
     id = db.Column("id", db.Integer, primary_key=True)
     nombre = db.Column("nombre", db.String(50), nullable=False, unique=True)
+
+    def json(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+        }
 
     def __repr__(self):
         return f"{self.nombre}"
@@ -120,3 +132,16 @@ class InsumoProveedor(db.Model):
     proveedor = db.relationship("Proveedor", back_populates="insumos")
 
     precio = db.Column("precio", db.Numeric(10, 2), nullable=False)
+
+    def json(self):
+        return {
+            "insumo": self.insumo.nombre,
+            "proveedor": self.proveedor.nombre,
+            "precio": float(self.precio),
+            "insumo_id": self.insumo_id,
+            "proveedor_id": self.proveedor_id,
+        }
+
+    def __repr__(self):
+        return f"{self.insumo.nombre} de {self.proveedor.nombre} = $ {self.precio}"
+
