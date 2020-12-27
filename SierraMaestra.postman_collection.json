@@ -75,7 +75,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/{{version}}/proveedor/1",
+					"raw": "{{url}}/api/{{version}}/proveedor/8",
 					"host": [
 						"{{url}}"
 					],
@@ -83,7 +83,7 @@
 						"api",
 						"{{version}}",
 						"proveedor",
-						"1"
+						"8"
 					]
 				}
 			},
@@ -95,7 +95,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/{{version}}/proveedor/1/insumos",
+					"raw": "{{url}}/api/{{version}}/proveedor/8/insumo",
 					"host": [
 						"{{url}}"
 					],
@@ -103,8 +103,8 @@
 						"api",
 						"{{version}}",
 						"proveedor",
-						"1",
-						"insumos"
+						"8",
+						"insumo"
 					]
 				}
 			},
@@ -255,7 +255,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo/5",
+					"raw": "{{url}}/api/{{version}}/insumo/24",
 					"host": [
 						"{{url}}"
 					],
@@ -263,7 +263,7 @@
 						"api",
 						"{{version}}",
 						"insumo",
-						"5"
+						"24"
 					]
 				}
 			},
@@ -275,7 +275,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo/2/proveedores",
+					"raw": "{{url}}/api/{{version}}/insumo/2/proveedor",
 					"host": [
 						"{{url}}"
 					],
@@ -284,7 +284,7 @@
 						"{{version}}",
 						"insumo",
 						"2",
-						"proveedores"
+						"proveedor"
 					]
 				}
 			},
@@ -726,19 +726,22 @@
 			"response": []
 		},
 		{
-			"name": "Listar precios",
+			"name": "Listar precio item",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo_proveedor",
+					"raw": "{{url}}/api/{{version}}/insumo/24/proveedor/8",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"{{version}}",
-						"insumo_proveedor"
+						"insumo",
+						"24",
+						"proveedor",
+						"8"
 					]
 				}
 			},
@@ -768,7 +771,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"insumo_id\": 45,\n    \"proveedor_id\": 46,\n    \"precio\": 33.90\n}",
+					"raw": "{\n    \"precio\": 33.90\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -776,14 +779,95 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo_proveedor",
+					"raw": "{{url}}/api/{{version}}/insumo/24/proveedor/8",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"{{version}}",
-						"insumo_proveedor"
+						"insumo",
+						"24",
+						"proveedor",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar item",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"precio\": 0.50\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo/24/proveedor/8",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo",
+						"24",
+						"proveedor",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar proceso Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo/24/proveedor/8",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo",
+						"24",
+						"proveedor",
+						"8"
 					]
 				}
 			},

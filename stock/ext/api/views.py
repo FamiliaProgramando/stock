@@ -27,12 +27,10 @@ class ApiProveedor(Resource):
         parser.add_argument("pagina", type=str)
         data = parser.parse_args()
 
-        proveedor = Proveedor(
-            nombre=data["nombre"],
-            telefono=data["telefono"],
-            email=data["email"],
-            pagina=data["pagina"],
-        )
+        proveedor = Proveedor(nombre=data["nombre"],
+                              telefono=data["telefono"],
+                              email=data["email"],
+                              pagina=data["pagina"])
 
         db.session.add(proveedor)
         db.session.commit()
@@ -86,7 +84,7 @@ class ApiProveedorId(Resource):
             return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
 
 
-class ApiProveedorIdInsumos(Resource):
+class ApiProveedorIdInsumo(Resource):
     def get(self, proveedor_id):
         try:
             proveedor = Proveedor.query.get(proveedor_id)
@@ -128,15 +126,13 @@ class ApiInsumo(Resource):
                             help="Campo obligatorio!")
         data = parser.parse_args()
 
-        insumo = Insumo(
-            nombre=data["nombre"],
-            marca=data["marca"],
-            cantidad=data["cantidad"],
-            unidad=data["unidad"],
-            stock=data["stock"],
-            tipo_insumo_id=data["tipo_insumo_id"],
-            proceso_id=data["proceso_id"],
-        )
+        insumo = Insumo(nombre=data["nombre"],
+                        marca=data["marca"],
+                        cantidad=data["cantidad"],
+                        unidad=data["unidad"],
+                        stock=data["stock"],
+                        tipo_insumo_id=data["tipo_insumo_id"],
+                        proceso_id=data["proceso_id"])
 
         db.session.add(insumo)
         db.session.commit()
@@ -200,13 +196,69 @@ class ApiInsumoId(Resource):
             return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
 
 
-class ApiInsumoIdProveedores(Resource):
+class ApiInsumoIdProveedor(Resource):
     def get(self, insumo_id):
         try:
             insumo = Insumo.query.get(insumo_id)
-            proveedores = [proveedor.json() for proveedor in insumo.proveedores]
+            proveedores = [
+                proveedor.json() for proveedor in insumo.proveedores
+            ]
             return {"proveedores": proveedores}
         except AttributeError:
+            return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
+
+
+class ApiInsumoIdProveedorId(Resource):
+    def get(self, insumo_id, proveedor_id):
+        try:
+            item = InsumoProveedor.query.get((insumo_id, proveedor_id))
+            return {"item": item.json()}
+        except AttributeError:
+            return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
+
+    def post(self, insumo_id, proveedor_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument("precio",
+                            type=float,
+                            required=True,
+                            help="Campo obligatorio!")
+        data = parser.parse_args()
+
+        item = InsumoProveedor(precio=data["precio"],
+                               insumo_id=insumo_id,
+                               proveedor_id=proveedor_id)
+
+        db.session.add(item)
+        db.session.commit()
+        return {"created": item.json()}, HTTP_RESPONSE_CREATED
+
+    def put(self, insumo_id, proveedor_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument("precio", type=float)
+        data = parser.parse_args()
+
+        try:
+            item = InsumoProveedor.query.get((insumo_id, proveedor_id))
+
+            item.precio = (data["precio"] if data["precio"] else item.precio)
+
+            db.session.add(item)
+            db.session.commit()
+            return {"updated": item.json()}
+
+        except (AttributeError, IntegrityError):
+            return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
+
+    def delete(self, insumo_id, proveedor_id):
+        try:
+            item = InsumoProveedor.query.get((insumo_id, proveedor_id))
+            json = item.json()
+            db.session.delete(item)
+            db.session.commit()
+
+            return {"deleted": json}
+
+        except (IntegrityError, UnmappedInstanceError):
             return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
 
 
@@ -325,39 +377,3 @@ class ApiTipoInsumoId(Resource):
 
         except (IntegrityError, UnmappedInstanceError):
             return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
-
-
-class ApiInsumoProveedor(Resource):
-    def get(self):
-        precios = InsumoProveedor.query.all()
-        data = [precio.json() for precio in precios]
-        return {"precios": data}
-
-    def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument("insumo_id",
-                            type=int,
-                            required=True,
-                            help="Campo obligatorio!")
-        parser.add_argument("proveedor_id",
-                            type=int,
-                            required=True,
-                            help="Campo obligatorio!")
-        parser.add_argument("precio",
-                            type=float,
-                            required=True,
-                            help="Campo obligatorio!")
-        data = parser.parse_args()
-
-        insumo = Insumo.query.get(data["insumo_id"])
-        proveedor = Proveedor.query.get(data["proveedor_id"])
-
-        asoc = InsumoProveedor(precio=data["precio"])
-        asoc.proveedor = proveedor
-        asoc.insumo = insumo
-        insumo.proveedores.append(asoc)
-
-        db.session.add(insumo)
-        db.session.commit()
-
-        return {"created": asoc.json()}, HTTP_RESPONSE_CREATED

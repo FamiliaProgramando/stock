@@ -21,9 +21,20 @@ cd stock
 
 make install
 source ~/.venv/bin/activate
+```
 
+## Banco de datos
+
+```bash
 make updb
 python populardb.py
+```
+
+### Línea de comandos SQL
+
+```bash
+sudo su - postgres
+psql stock
 ```
 
 ## Ejecutar
@@ -54,4 +65,72 @@ Para testar la API usar importar el archivo json para Postman.
 Ctrl+C
 exit
 vagrant halt
+```
+
+# API
+
+## Proveedores
+
+```
+{:nombre, :telefono, :email, :pagina}
+
+GET    /api/v1/proveedor
+POST   /api/v1/proveedor
+
+GET    /api/v1/proveedor/id
+PUT    /api/v1/proveedor/id
+DELETE /api/v1/proveedor/id
+
+GET    /api/v1/proveedor/id/insumo
+```
+
+## Insumos
+
+```
+{:nombre, :marca, :cantidad, :unidad, :stock, :tipo_insumo_id, :proceso_id}
+
+GET    /api/v1/insumo
+POST   /api/v1/insumo
+
+GET    /api/v1/insumo/id
+PUT    /api/v1/insumo/id
+DELETE /api/v1/insumo/id
+
+GET    /api/v1/insumo/id/proveedor
+```
+
+# Insumo/Proveedor
+
+```bash
+{:precio}
+
+POST   /api/v1/insumo/id/proveedor/id
+PUT    /api/v1/insumo/id/proveedor/id
+DELETE /api/v1/insumo/id/proveedor/id
+```
+
+## Tipo Insumos
+
+```
+{:nombre}
+
+GET    /api/v1/insumo_tipo
+POST   /api/v1/insumo_tipo
+
+GET    /api/v1/insumo_tipo/id
+PUT    /api/v1/insumo_tipo/id
+DELETE /api/v1/insumo_tipo/id
+```
+
+## Procesos
+
+```
+{:nombre}
+
+GET    /api/v1/proceso
+POST   /api/v1/proceso
+
+GET    /api/v1/proceso/id
+PUT    /api/v1/proceso/id
+DELETE /api/v1/proceso/id
 ```
