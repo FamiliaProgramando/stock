@@ -1,4 +1,3 @@
-Faker
 jedi
 isort
 pylint

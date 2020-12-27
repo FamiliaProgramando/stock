@@ -8,7 +8,7 @@ install:
 		pip check; \
 	)
 
-initdb:
+updb:
 	# flask db init
 	# flask db migrate
 	FLASK_APP=stock/app flask db upgrade; \

@@ -1,3 +1,4 @@
+Faker
 Flask
 flask-admin
 flask-sqlalchemy
