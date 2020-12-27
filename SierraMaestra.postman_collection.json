@@ -51,7 +51,7 @@
 			"response": []
 		},
 		{
-			"name": "/api/version/proveedor",
+			"name": "Listar proveedores",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -70,83 +70,48 @@
 			"response": []
 		},
 		{
-			"name": "/api/version/insumo",
+			"name": "Listar proveedor por ID",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo",
+					"raw": "{{url}}/api/{{version}}/proveedor/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"{{version}}",
-						"insumo"
+						"proveedor",
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/api/version/tipo_insumo",
+			"name": "Listar insumos de un proveedor",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/{{version}}/tipo_insumo",
+					"raw": "{{url}}/api/{{version}}/proveedor/1/insumos",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"{{version}}",
-						"tipo_insumo"
+						"proveedor",
+						"1",
+						"insumos"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/api/version/proceso",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/{{version}}/proceso",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"proceso"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/insumo_proveedor",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo_proveedor",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"insumo_proveedor"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/proveedor",
+			"name": "Postar un proveedor",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
 			},
@@ -164,12 +129,13 @@
 					{
 						"key": "Authorization",
 						"type": "text",
-						"value": "jwt {{access_token}}"
+						"value": "jwt {{access_token}}",
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"local\": \"Santa Fe\",\n\t\"latitude\": \"-31.610786\",\n    \"longitude\": \"-60.697211\"\n}",
+					"raw": "{\n    \"nombre\": \"Fulano de Tal\",\n\t\"telefono\": \"610786\",\n    \"email\": \"fulanodetal@gmail.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -191,7 +157,141 @@
 			"response": []
 		},
 		{
-			"name": "/api/version/insumo",
+			"name": "Actualizar un proveedor",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pagina\": \"http://fulanodetal.com.ar\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/proveedor/16",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"proveedor",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar un proveedor",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/proveedor/16",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"proveedor",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar insumos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar insumo por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo/5",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar proveedores de un insumo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo/2/proveedores",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo",
+						"2",
+						"proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Postar un insumo",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
 			},
@@ -236,7 +336,120 @@
 			"response": []
 		},
 		{
-			"name": "/api/version/tipo_insumo",
+			"name": "Actualizar un insumo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"cantidad\": 21\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo/42",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo",
+						"42"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar un insumo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo/44",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo",
+						"44"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar tipos de insumo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/tipo_insumo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"tipo_insumo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar tipo insumo por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/tipo_insumo/4",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"tipo_insumo",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Postar tipo de insumo",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
 			},
@@ -281,7 +494,120 @@
 			"response": []
 		},
 		{
-			"name": "/api/version/proceso",
+			"name": "Actualizar tipo insumo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"caramelos\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/tipo_insumo/49",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"tipo_insumo",
+						"49"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar tipo insumo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/tipo_insumo/49",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"tipo_insumo",
+						"49"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar procesos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/proceso",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"proceso"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar proceso por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/proceso/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"proceso",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Postar proceso",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
 			},
@@ -326,252 +652,7 @@
 			"response": []
 		},
 		{
-			"name": "/api/version/insumo_proveedor",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {}
-			},
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "jwt {{access_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"insumo_id\": 1,\n    \"proveedor_id\": 46,\n    \"precio\": 33.90\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo_proveedor",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"insumo_proveedor"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/proveedor/id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/{{version}}/proveedor/1",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"proveedor",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/insumo/id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo/42",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"insumo",
-						"42"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/tipo_insumo/id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/{{version}}/tipo_insumo/46",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"tipo_insumo",
-						"46"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/proceso/id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/{{version}}/proceso/10",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"proceso",
-						"10"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/proveedor/id",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "jwt {{access_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"pagina\": \"http://fulanodetal.com.ar\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/api/{{version}}/proveedor/1",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"proveedor",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/insumo/id",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "jwt {{access_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"cantidad\": 21\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo/42",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"insumo",
-						"42"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/tipo_insumo/id",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "jwt {{access_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"caramelos\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/api/{{version}}/tipo_insumo/49",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"tipo_insumo",
-						"49"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/proceso/id",
+			"name": "Actualizar proceso",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -611,109 +692,7 @@
 			"response": []
 		},
 		{
-			"name": "/api/version/proveedor/id",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "jwt {{access_token}}"
-					}
-				],
-				"url": {
-					"raw": "{{url}}/api/{{version}}/proveedor/1",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"proveedor",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/insumo/id",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "jwt {{access_token}}"
-					}
-				],
-				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo/42",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"insumo",
-						"42"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/tipo_insumo/id",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "jwt {{access_token}}"
-					}
-				],
-				"url": {
-					"raw": "{{url}}/api/{{version}}/tipo_insumo/49",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"{{version}}",
-						"tipo_insumo",
-						"49"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/version/proceso/id",
+			"name": "Deletar proceso",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -741,6 +720,70 @@
 						"{{version}}",
 						"proceso",
 						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar precios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo_proveedor",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo_proveedor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Postar precio",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "jwt {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"insumo_id\": 45,\n    \"proveedor_id\": 46,\n    \"precio\": 33.90\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/{{version}}/insumo_proveedor",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"{{version}}",
+						"insumo_proveedor"
 					]
 				}
 			},
