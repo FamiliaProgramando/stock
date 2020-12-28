@@ -99,7 +99,7 @@ DELETE /api/v1/insumo/id
 GET    /api/v1/insumo/id/proveedor
 ```
 
-# Insumo/Proveedor
+## Insumo/Proveedor
 
 ```bash
 {:precio}

@@ -1,6 +1,6 @@
 from flask import Flask
 
-from stock.ext import api, db
+from stock.ext import api, db, site
 
 
 def create_app():
@@ -9,5 +9,6 @@ def create_app():
 
     db.init_app(app)
     api.init_app(app)
+    site.init_app(app)
 
     return app
