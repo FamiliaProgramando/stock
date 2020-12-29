@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <main id="main">
+    <form onsubmit="return false;">
+      <div>
+        <input id="prov-in" name="proveedor" type="search" placeholder="Nombre del proveedor">
+        <input id="prov-bt" name="enviar" type="submit" value="Enviar">
+      </div>
+    </form>
+    <div id="proveedores"></div>
+  </main>
+{% endblock %}
+
+{% block extrajs %}
+  <script src="{{ url_for('static', filename='js/ejemplo.js') }}"></script>
+{% endblock %}

@@ -1,3 +1,4 @@
+from flask import request
 from flask_restful import Resource, reqparse
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import UnmappedInstanceError
@@ -12,7 +13,13 @@ HTTP_RESPONSE_NOT_FOUND = 404
 
 class ApiProveedor(Resource):
     def get(self):
-        proveedores = Proveedor.query.all()
+        args = request.args
+        if args:
+            proveedores = Proveedor.query.filter(
+                Proveedor.nombre.like(f'%{args["nombre"]}%')).all()
+        else:
+            proveedores = Proveedor.query.all()
+
         data = [proveedor.json() for proveedor in proveedores]
         return {"proveedores": data}
 
