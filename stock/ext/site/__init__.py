@@ -15,3 +15,8 @@ def index():
 @bp.route("/nueva-coccion")
 def nueva_coccion():
     return render_template("nuevaCocccion.html", title="Sierra Maestra")
+
+
+@bp.route("/ejemplo")
+def ejemplo():
+    return render_template("ejemplo.html", title="Ejemplo")
