@@ -1,12 +1,12 @@
 /* generales */
 * {padding: 0;
-    margin: 0;  
-    box-sizing: border-box;  
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     display: flex;
-    flex-wrap: wrap;       
+    flex-wrap: wrap;
     height: 100vh;
 }
 
@@ -21,9 +21,9 @@ a {
 /* Cabecera */
 
 #header {
-    width: 100%;  
+    width: 100%;
     height: 60px;
-    background-color: #7fd38b; 
+    background-color: #7fd38b;
     color: rgb(16, 56, 18);
     display: flex;
     align-items: center;
@@ -32,7 +32,7 @@ a {
     padding: 0.3em 0.7em;
     top:0;
 }
- 
+
 .menuItem {
     padding: 0 0.7em;
 }
@@ -50,11 +50,11 @@ a {
 }
 
 #tituloCabecera {
-    font-size: 1em;   
+    font-size: 1em;
     font-weight: 2;
     font-family: Verdana, Tahoma, sans-serif;
-    display: inline-block; 
-    flex-shrink: 0; 
+    display: inline-block;
+    flex-shrink: 0;
     font-weight: 400;
     line-height: 1.3em;
     text-align: left;
@@ -62,15 +62,15 @@ a {
 
 #cierreMenu {
     display: none;
-}  
+}
 #home {
     margin-left: auto;
 }
 
 
 #navbar {
-    width: 100%;  
-    background-color: rgb(79, 116, 85);  
+    width: 100%;
+    background-color: rgb(79, 116, 85);
     background: linear-gradient(135deg, #5a8f58 , #3c5837 99%);
     height: 40px;
     color: rgba(255, 255, 255, 1);
@@ -85,7 +85,7 @@ a {
     box-shadow: 0px 5px 5px rgba(189, 189, 189, 0.75);
 }
 
-#navMenu {     
+#navMenu {
     display: inline-block;
     width: fit-content ;
     font-size: 0.5em;
@@ -116,125 +116,135 @@ a {
 /* Main */
 
 #main {
-    width: 100%;
-    padding: 2em;
-    display: flex;
-    flex-wrap: nowrap;
-    margin-top: 100px;
-    align-content: flex-start
+  width: 100%;
+  padding: 2em;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 100px;
+  align-content: flex-start
 
 }
 
 .select_receta {
-    background-color: #7fd38b; 
-    color: rgb(16, 56, 18);
-    padding: 5px 10px;
-    width: max-content;
-    border: 2px solid;
-    border-color: transparent transparen pink black;
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    cursor: pointer;
+  background-color: #7fd38b;
+  color: rgb(16, 56, 18);
+  padding: 5px 10px;
+  width: max-content;
+  border: 2px solid;
+  border-color: transparent transparen pink black;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  cursor: pointer;
 }
 
 .select_item {
-    padding: 0px 5px;
+  padding: 0px 5px;
+}
+
+.cerrado {
+  display: none;
 }
 
 .desplegado {
-    
+  display: inline-block;
+  background-color: #ffffff;
+  color: rgb(16, 56, 18);
+  border: 2px solid;
+  border-color: rgb(16, 56, 18);
+  padding: 2px;
+  width: 100%;
 }
 
 /* footer */
 
 #footer{
-    width: 100%; 
-    height: 60px;
-    background-color: #7fd38b; 
-    color: rgb(16, 56, 18);
-    text-align: center;
-    display: flex;    
-    justify-content: space-between;
-    align-items: center;    
-    padding: 0.3em 0.7em;
-    position: fixed;
-    bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #7fd38b;
+  color: rgb(16, 56, 18);
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3em 0.7em;
+  position: fixed;
+  bottom: 0;
 }
 
 #footerLogo {
-    height: 60%;    
-    display: inline-block; 
-    position: relative;     
-    border-radius: 50%;    
+  height: 60%;
+  display: inline-block;
+  position: relative;
+  border-radius: 50%;
 }
 
 #contenedorFooterLogo{
-    display: flex;
-    height: 100%;  
-    align-items: center; 
-    justify-content: center;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 #infoFooter {
-    text-align: center;
+  text-align: center;
 }
 
 #redesFooter {
-    text-align: right;
-    font-size: 1.3em;
-    padding: 5px 2px;
-    display:inline-block;
+  text-align: right;
+  font-size: 1.3em;
+  padding: 5px 2px;
+  display:inline-block;
 }
 
 #footer h5 {
-    font-size: 0.6em;
-    text-transform: uppercase; 
+  font-size: 0.6em;
+  text-transform: uppercase;
 }
 
-#footer p {    
-    display:none;
-    font-size: 0.8em;
-    padding: 5px;    
+#footer p {
+  display:none;
+  font-size: 0.8em;
+  padding: 5px;
 }
 
 #footer a:visited{
-    color: rgb(16, 56, 18);
+  color: rgb(16, 56, 18);
 }
 #footer  a:link {
-    color: rgb(16, 56, 18);
+  color: rgb(16, 56, 18);
 }
 
 @media screen and (max-width: 250px) {
-  
+
     #tituloCabecera {
-        display: none;
+      display: none;
     }
 
     #navbar {
-        flex-wrap: wrap; 
-        height: fit-content;
+      flex-wrap: wrap;
+      height: fit-content;
     }
 
     .navItem {
-        display: block;
-        width: 100%;
+      display: block;
+      width: 100%;
     }
 
 }
 
 @media screen and (min-width: 480px) {
-  
+
     #navMenu {
-        font-size: 0.7em;  
+      font-size: 0.7em;
     }
 
     #header {
-        font-size: 1.3em;
+      font-size: 1.3em;
     }
 
     #footer {
-        font-size: 1.3em;
+      font-size: 1.3em;
     }
 
 }
@@ -243,56 +253,56 @@ a {
 @media screen and (min-width: 680px) {
 
     #navbar {
-        justify-content: start;
+      justify-content: start;
     }
 
     #logoCabecera {
-        height: 80%;
+      height: 80%;
     }
 
     #navMenu {
-        font-size: 0.8em;  
+      font-size: 0.8em;
     }
 
     #footerLogo {
-        height: 80%;
+      height: 80%;
     }
 
     #header {
-        font-size: 1.5em;    
+      font-size: 1.5em;
     }
 
     #footer {
-        font-size: 1.5em;
+      font-size: 1.5em;
     }
 
 
 }
 
 @media screen and (min-width: 1020px) {
-  
+
     #navbar {
-        justify-content: start;
+      justify-content: start;
     }
 
     #logoCabecera {
-        height: 80%;
+      height: 80%;
     }
 
     #navMenu {
-        font-size: 0.8em;  
+      font-size: 0.8em;
     }
 
     #footerLogo {
-        height: 80%;
+      height: 80%;
     }
 
     #header {
-        font-size: 1.5em;    
+      font-size: 1.5em;
     }
 
     #footer {
-        font-size: 1.5em;
+      font-size: 1.5em;
     }
 
 }

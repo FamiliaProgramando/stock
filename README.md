@@ -67,6 +67,11 @@ exit
 vagrant halt
 ```
 
+## Reiniciar
+```
+vagrant reload
+```
+
 # API
 
 ## Proveedores
