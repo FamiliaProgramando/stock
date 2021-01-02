@@ -37,6 +37,9 @@ PROD_DATABASE_URI=
 
 ```
 
+Los siguientes comandos crean las tablas, las relaciones y introducen
+algunos datos fake para testar el funcionamiento del banco de datos:
+
 ```bash
 make updb
 python populardb.py
@@ -44,9 +47,13 @@ python populardb.py
 
 ### Línea de comandos SQL
 
+Para entrar en la línea de comandos de PostgreSQL (opcional):
+
 ```bash
 sudo su - postgres
 psql stock
+\dt     # para listar las tablas
+\q      # para salir
 ```
 
 ## Ejecutar
@@ -57,7 +64,8 @@ make run
 
 ## Tests
 
-Para testar la API usar importar el archivo json para Postman.
+Para testar la API importar los archivo json del Postman,
+tanto `postman_collections` como `postman_environment`.
 
 ## Finalizar
 
