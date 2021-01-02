@@ -32,7 +32,7 @@ como para ambiente de producción.
 
 ```bash
 SECRET_KEY="super-secret-key"
-DEV_DATABASE_URI="postgresql://stock:stock@localhost:5432/stock"
+DEV_DATABASE_URI="postgresql+psycopg2://stock:stock@localhost:5432/stock"
 PROD_DATABASE_URI=
 
 ```
