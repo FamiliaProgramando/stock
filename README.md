@@ -80,6 +80,11 @@ vagrant halt
 vagrant reload
 ```
 
+## Destruir
+```
+vagrant destroy
+```
+
 # API
 
 ## Proveedores
