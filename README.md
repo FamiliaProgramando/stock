@@ -42,7 +42,7 @@ algunos datos fake para testar el funcionamiento del banco de datos:
 
 ```bash
 make updb
-python populardb.py
+python populatedb.py
 ```
 
 ### Línea de comandos SQL
