@@ -25,6 +25,18 @@ source ~/.venv/bin/activate
 
 ## Banco de datos
 
+Es necesario adicionar un archivo `.env` con las variables de ambiente,
+como llave secreta, los datos de conección al banco de datos (usuario, seña,
+host, puerto, nombre del banco), tanto para ambiente de desarrollo
+como para ambiente de producción.
+
+```bash
+SECRET_KEY="super-secret-key"
+DEV_DATABASE_URI="postgresql://stock:stock@localhost:5432/stock"
+PROD_DATABASE_URI=
+
+```
+
 ```bash
 make updb
 python populardb.py
@@ -38,18 +50,6 @@ psql stock
 ```
 
 ## Ejecutar
-
-Para ejecutar la API antes es necesario adicionar un archivo `.env` con
-las siguientes variables de ambiente:
-
-```bash
-SECRET_KEY="super-secret-key"
-DEV_DATABASE_URI="postgresql://stock:stock@localhost:5432/stock"
-PROD_DATABASE_URI=
-
-```
-
-A continuación:
 
 ```bash
 make run
