@@ -29,6 +29,41 @@ source ~/.venv/bin/activate
 make updb
 python populardb.py
 ```
+## Back up
+
+```bash
+sudo su - postgres
+pg_dump stock > dump_file
+cp dump_file /home/vagrant/stock
+exit
+```
+## Eliminar datos existentes
+
+```bash
+psql stock
+select * from proveedor;
+delete from proveedor;
+\q
+exit
+```
+
+## Borrar tablas
+
+```bash
+psql stock
+drop table insumo_proveedor;
+drop type unidades;
+\q
+exit
+```
+
+## Restaurar Back up
+
+```bash
+sudo su - postgres
+cp /home/vagrant/stock/dump_file .
+psql stock < dump_file
+```
 
 ### Línea de comandos SQL
 
@@ -59,6 +94,12 @@ make run
 
 Para testar la API usar importar el archivo json para Postman.
 
+## Inspeccionar
+
+```bash
+git fetch
+```
+
 ## Finalizar
 
 ```bash
@@ -71,6 +112,11 @@ vagrant halt
 ```
 vagrant reload
 ```
+## Confirmar estado
+```
+vagrant status
+```
+
 
 # API
 
