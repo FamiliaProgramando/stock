@@ -25,9 +25,16 @@ source ~/.venv/bin/activate
 
 ## Banco de datos
 
+Es necesario adicionar un archivo `.env` con las variables de ambiente,
+como llave secreta, los datos de conección al banco de datos (usuario, seña,
+host, puerto, nombre del banco), tanto para ambiente de desarrollo
+como para ambiente de producción.
+
 ```bash
-make updb
-python populardb.py
+SECRET_KEY="super-secret-key"
+DEV_DATABASE_URI="postgresql+psycopg2://stock:stock@localhost:5432/stock"
+PROD_DATABASE_URI=
+
 ```
 ## Back up
 
@@ -65,26 +72,26 @@ cp /home/vagrant/stock/dump_file .
 psql stock < dump_file
 ```
 
+Los siguientes comandos crean las tablas, las relaciones y introducen
+algunos datos fake para testar el funcionamiento del banco de datos:
+
+```bash
+make updb
+python populatedb.py
+```
+
 ### Línea de comandos SQL
+
+Para entrar en la línea de comandos de PostgreSQL (opcional):
 
 ```bash
 sudo su - postgres
 psql stock
+\dt     # para listar las tablas
+\q      # para salir
 ```
 
 ## Ejecutar
-
-Para ejecutar la API antes es necesario adicionar un archivo `.env` con
-las siguientes variables de ambiente:
-
-```bash
-SECRET_KEY="super-secret-key"
-DEV_DATABASE_URI="postgresql://stock:stock@localhost:5432/stock"
-PROD_DATABASE_URI=
-
-```
-
-A continuación:
 
 ```bash
 make run
@@ -92,7 +99,8 @@ make run
 
 ## Tests
 
-Para testar la API usar importar el archivo json para Postman.
+Para testar la API importar los archivo json del Postman,
+tanto `postman_collections` como `postman_environment`.
 
 ## Inspeccionar
 
@@ -117,6 +125,11 @@ vagrant reload
 vagrant status
 ```
 
+
+## Destruir
+```
+vagrant destroy
+```
 
 # API
 
