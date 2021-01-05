@@ -31,22 +31,71 @@ a {
     position: fixed;
     padding: 0.3em 0.7em;
     top:0;
+    z-index: 1000;
 }
 
-.menuItem {
+.headerItem {
     padding: 0 0.7em;
 }
 
-.menuItem a:visited{
+.headerItem a:visited{
     color: rgb(16, 56, 18);
+}
+
+.headerItem a:active{
+    color: rgb(16, 56, 18);
+}
+
+.headerItem a:link {
+    color:rgb(16, 56, 18);
+}
+
+#logoMenu {
+  cursor: pointer;
+}
+
+#menu {
+  width: 35%;
+  height: 100vh;
+  background-color: #000000e0;
+  color: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.menuItem {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  padding-top: 2em;
+}
+
+.menuItem li{
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.menuItem i,a{
+  display: block;
+}
+
+.menuItem i{
+  padding-bottom: 10px;
+  font-size: 2em;
+}
+
+.menuItem a:visited{
+  color: rgba(255, 255, 255, 1);
 }
 
 .menuItem a:active{
-    color: rgb(16, 56, 18);
+  color: rgba(255, 255, 255, 1) ;
 }
 
 .menuItem a:link {
-    color:rgb(16, 56, 18);
+  color: rgba(255, 255, 255, 1) ;
 }
 
 #tituloCabecera {
@@ -67,7 +116,6 @@ a {
     margin-left: auto;
 }
 
-
 #navbar {
     width: 100%;
     background-color: rgb(79, 116, 85);
@@ -83,6 +131,7 @@ a {
     padding: 2px;
     top: 60px;
     box-shadow: 0px 5px 5px rgba(189, 189, 189, 0.75);
+    z-index: 100;
 }
 
 #navMenu {
@@ -238,6 +287,9 @@ a {
   text-align: right;
   font-size: 1.3em;
   padding: 5px 2px;
+}
+
+#redesFooter a {
   display:inline-block;
 }
 
