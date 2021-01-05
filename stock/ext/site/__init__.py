@@ -16,7 +16,30 @@ def index():
 def nueva_coccion():
     return render_template("nuevaCocccion.html", title="Sierra Maestra")
 
+@bp.route("/envasado")
+def envasado():
+    return render_template("envasado.html", title="Sierra Maestra")
 
 @bp.route("/ejemplo")
 def ejemplo():
     return render_template("ejemplo.html", title="Ejemplo")
+
+@bp.route("/stock")
+def stock():
+    return render_template("stock.html", title="Sierra Maestra")
+
+@bp.route("/registro")
+def registro():
+    return render_template("registro.html", title="Sierra Maestra")
+
+@bp.route("/recetas")
+def recetas():
+    return render_template("recetas.html", title="Sierra Maestra")
+
+@bp.route("/proveedores")
+def proveedores():
+    return render_template("proveedores.html", title="Sierra Maestra")
+
+@bp.route("/insumos")
+def insumos():
+    return render_template("insumos.html", title="Sierra Maestra")
