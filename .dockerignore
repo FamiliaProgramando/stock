@@ -1,0 +1,10 @@
+.git
+SierraMaestra.postman_*
+Vagrantfile
+.vagrant
+.editorconfig
+.eslintrc.js
+.gitignore
+.pylintrc
+bootstrap.sh
+requirements-dev.txt
