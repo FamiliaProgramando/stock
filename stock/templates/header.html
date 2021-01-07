@@ -1,7 +1,18 @@
-  <header id="header">
-    <div id="logoMenu" class="menuItem"><i class="fas fa-bars"></i></div>
-    <div id="cierreMenu" class="menuItem"><i class="fas fa-times"></i></div>
-    <h1 id="tituloCabecera" class="menuItem"> Sierra Maestra</h1>
-    <div id="home" class="menuItem"><a href="#index"><i class="fas fa-home"></i></a></div>
-    <div id="iconoNotificaciones" class="menuItem"><i class="far fa-bell"></i>
-  </header>
+<header id="header">
+  <div id="logoMenu" class="headerItem"><i class="fas fa-bars"></i></div>
+  <div id="cierreMenu" class="headerItem"><i class="fas fa-times"></i></div>
+  <div id="menu" class="hidden">
+    <ul class="menuItem">
+      <li class="item"><a href="{{ url_for('site.nueva_coccion') }}"><i class="fas fa-burn"></i>Cocinar</a></li>
+      <li class="item"><a href="{{ url_for('site.envasado') }}"></i><i class="fas fa-wine-bottle"></i>Envasar</a></li>
+      <li class="item"><a href="{{ url_for('site.stock') }}"><i class="fas fa-boxes"></i>Stock</a></li>
+      <li class="item"><a href="{{ url_for('site.registro') }}"><i class="fas fa-clipboard-list"></i>Lotes</a></li>
+      <li class="item"><a href="{{ url_for('site.insumos') }}"><i class="fas fa-shopping-bag"></i>Insumos</a></li>
+      <li class="item"><a href="{{ url_for('site.proveedores') }}"><i class="fas fa-user-tie"></i>Proveedores</a></li>
+      <li class="item"><a href="{{ url_for('site.recetas') }}"><i class="fas fa-beer"></i>Recetas</a></li>
+    </ul>
+  </div>
+  <h1 id="tituloCabecera" class="headerItem"> Sierra Maestra</h1>
+  <div id="home" class="headerItem"><a href="{{ url_for('site.index') }}"><i class="fas fa-home"></i></a></div>
+  <div id="iconoNotificaciones" class="headerItem"><i class="far fa-bell"></i>
+</header>

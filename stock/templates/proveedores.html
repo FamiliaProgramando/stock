@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block extracss %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styleProv.css') }}">
+{% endblock %}
+
+{% block main %}
+<main id="main">
+  <div class="proveedores_form_box">
+    <form id="proveedores_form">
+      <h2>Proveedores</h2>
+      <label for="nombre">Nombre</label>
+      <input id="proveedores_nombre" class="no_editable" type="text" required name="nombre" readonly>
+      <label for="telefono">Telefono</label>
+      <input id="proveedores_telefono" class="no_editable" type="text" name="telefono" readonly>
+      <label for="email">Email</label>
+      <input id="proveedores_email" class = "link no_editable" type="email" name="email" readonly>
+      <label for="pagina">Pagina Web</label>
+      <input id="proveedores_pagina" class = "link no_editable" type="url" name="pagina">
+      <div class="botones_box">
+        <div id="edit" class="boton"><i class="fas fa-pencil-alt"></i></div>
+        <div id="delete" class="boton"><i class="far fa-trash-alt"></i></div>
+        <div id="add" class="boton"><i class="fas fa-user-plus"></i></div>
+      </div>
+      <div class="botones_box">
+        <div id="anterior" class="boton flecha"><i class="fas fa-angle-left"></i></div>
+        <div class="boton numero_prov active">1</div>
+        <div class="boton numero_prov">2</div>
+        <div class="boton numero_prov">3</div>
+        <div id="siguiente" class="boton flecha"><i class="fas fa-angle-right"></i></div>
+        <div class="boton cancel hidden"><i class="far fa-window-close"></i></div>
+        <div class="boton ok hidden"><i class="far fa-save"></i></div>
+      </div>
+    </form>
+  </div>
+</main>
+
+{% endblock %}
+
+{% block extrajs %}
+  <script src="{{ url_for('static', filename='js/scriptProv.js') }}"></script>
+{% endblock %}

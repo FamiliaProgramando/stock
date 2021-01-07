@@ -36,6 +36,41 @@ DEV_DATABASE_URI="postgresql+psycopg2://stock:stock@localhost:5432/stock"
 PROD_DATABASE_URI=
 
 ```
+## Back up
+
+```bash
+sudo su - postgres
+pg_dump stock > dump_file
+cp dump_file /home/vagrant/stock
+exit
+```
+## Eliminar datos existentes
+
+```bash
+psql stock
+select * from proveedor;
+delete from proveedor;
+\q
+exit
+```
+
+## Borrar tablas
+
+```bash
+psql stock
+drop table insumo_proveedor;
+drop type unidades;
+\q
+exit
+```
+
+## Restaurar Back up
+
+```bash
+sudo su - postgres
+cp /home/vagrant/stock/dump_file .
+psql stock < dump_file
+```
 
 Los siguientes comandos crean las tablas, las relaciones y introducen
 algunos datos fake para testar el funcionamiento del banco de datos:
@@ -67,6 +102,12 @@ make run
 Para testar la API importar los archivo json del Postman,
 tanto `postman_collections` como `postman_environment`.
 
+## Inspeccionar
+
+```bash
+git fetch
+```
+
 ## Finalizar
 
 ```bash
@@ -79,6 +120,11 @@ vagrant halt
 ```
 vagrant reload
 ```
+## Confirmar estado
+```
+vagrant status
+```
+
 
 ## Destruir
 ```

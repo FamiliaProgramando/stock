@@ -1,0 +1,71 @@
+/* Main */
+
+#select-receta-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 60px;
+  height: fit-content;
+  min-height: 200px;
+}
+
+.select_receta_default {
+  background-color: #7fd38b;
+  color: rgb(16, 56, 18);
+  padding: 5px 10px;
+  width: 200px;
+  border: 2px solid;
+  border-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  cursor: pointer;
+  margin: auto;
+}
+
+.select_receta_default:hover {
+  border-color: rgb(16, 56, 18);
+}
+
+.select_receta_default.active {
+  border-color: rgb(16, 56, 18);
+}
+
+#select_options_receta {
+  max-height: 100px;
+  overflow: auto;
+  z-index: 100;
+  width: 100%;
+}
+
+.select_item {
+  padding: 0px 5px;
+}
+
+.desplegado {
+  display: inline-block;
+  background-color: #ffffff;
+  color: rgb(16, 56, 18);
+  border: 2px solid;
+  border-color:  rgb(143, 202, 146);
+  padding: 2px;
+  width: 100%;
+}
+
+.option {
+  cursor: pointer;
+  padding: 5px 3px;
+}
+
+.option:hover {
+  background-color: #b2f7a0;
+}
+
+.resumenReceta {
+  background-color: #b2f7a0;
+  color: rgb(16, 56, 18);
+  padding: 10px;
+  width: 300px;
+  height: fit-content;
+  margin-top: 10px;
+}
