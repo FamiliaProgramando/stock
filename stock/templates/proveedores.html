@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block extracss %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styleProv.css') }}">
+{% endblock %}
+
 {% block main %}
 <main id="main">
   <div class="proveedores_form_box">

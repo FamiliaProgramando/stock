@@ -214,6 +214,7 @@ siguiente.addEventListener("click", () => {
 
 primero.addEventListener("click", () => {
   console.log("click 1");
+
 });
 
 segundo.addEventListener("click", () => {

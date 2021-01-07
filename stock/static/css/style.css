@@ -1,53 +1,57 @@
 /* generales */
 * {padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    flex-wrap: wrap;
-    height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
+
+.hidden {
+  display: none;
+}
 /* Cabecera */
 
 #header {
-    width: 100%;
-    height: 60px;
-    background-color: #7fd38b;
-    color: rgb(16, 56, 18);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    padding: 0.3em 0.7em;
-    top:0;
-    z-index: 1000;
+  width: 100%;
+  height: 60px;
+  background-color: #7fd38b;
+  color: rgb(16, 56, 18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  padding: 0.3em 0.7em;
+  top:0;
+  z-index: 1000;
 }
 
 .headerItem {
-    padding: 0 0.7em;
+  padding: 0 0.7em;
 }
 
 .headerItem a:visited{
-    color: rgb(16, 56, 18);
+  color: rgb(16, 56, 18);
 }
 
 .headerItem a:active{
-    color: rgb(16, 56, 18);
+  color: rgb(16, 56, 18);
 }
 
 .headerItem a:link {
-    color:rgb(16, 56, 18);
+  color:rgb(16, 56, 18);
 }
 
 #logoMenu {
@@ -99,249 +103,83 @@ a {
 }
 
 #tituloCabecera {
-    font-size: 1em;
-    font-weight: 2;
-    font-family: Verdana, Tahoma, sans-serif;
-    display: inline-block;
-    flex-shrink: 0;
-    font-weight: 400;
-    line-height: 1.3em;
-    text-align: left;
+  font-size: 1em;
+  font-weight: 2;
+  font-family: Verdana, Tahoma, sans-serif;
+  display: inline-block;
+  flex-shrink: 0;
+  font-weight: 400;
+  line-height: 1.3em;
+  text-align: left;
 }
 
 #cierreMenu {
-    display: none;
+  display: none;
 }
 #home {
-    margin-left: auto;
+  margin-left: auto;
 }
 
+/*nav-bar*/
+
 #navbar {
-    width: 100%;
-    background-color: rgb(79, 116, 85);
-    background: linear-gradient(135deg, #5a8f58 , #3c5837 99%);
-    height: 40px;
-    color: rgba(255, 255, 255, 1);
-    font-size: 1.5em;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: fixed;
-    padding: 1px;
-    top: 60px;
-    box-shadow: 0px 5px 5px rgba(189, 189, 189, 0.75);
-    z-index: 100;
+  width: 100%;
+  background-color: rgb(79, 116, 85);
+  background: linear-gradient(135deg, #5a8f58 , #3c5837 99%);
+  height: 40px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 1.5em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  padding: 1px;
+  top: 60px;
+  box-shadow: 0px 5px 5px rgba(189, 189, 189, 0.75);
+  z-index: 100;
 }
 
 #navMenu {
-    display: inline-block;
-    width: fit-content ;
-    font-size: 0.5em;
-    font-family: Verdana, Tahoma, sans-serif;
+  display: inline-block;
+  width: fit-content ;
+  font-size: 0.5em;
+  font-family: Verdana, Tahoma, sans-serif;
 }
 
 .navItem {
-    cursor: pointer;
-    color: rgba(255, 255, 255, 1);
-    display: inline-block;
-    padding: 5px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 1);
+  display: inline-block;
+  padding: 5px;
 }
 
 .navItem i {
-
   padding: 4px;
 }
+
 .navItem a:visited{
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 }
 
 .navItem a:active{
-    color: rgba(255, 255, 255, 1) !important;
+  color: rgba(255, 255, 255, 1) !important;
 }
 
 .navItem a:link {
-    color: rgba(255, 255, 255, 1) !important;
+  color: rgba(255, 255, 255, 1) !important;
 }
 
-
-
-/* Main */
+/* main */
 
 #main {
   width: 100%;
-  padding: 2em;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-
 }
 
-/* main nueva coccion */
-#select-receta-form {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin-top: 60px;
-  height: fit-content;
-  min-height: 200px;
-}
-
-.select_receta_default {
-  background-color: #7fd38b;
-  color: rgb(16, 56, 18);
-  padding: 5px 10px;
-  width: 200px;
-  border: 2px solid;
-  border-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  cursor: pointer;
-  margin: auto;
-}
-
-.select_receta_default:hover {
-  border-color: rgb(16, 56, 18);
-}
-
-.select_receta_default.active {
-  border-color: rgb(16, 56, 18);
-}
-
-#select_options_receta {
-  max-height: 100px;
-  overflow: auto;
-  z-index: 100;
-  width: 100%;
-}
-
-.select_item {
-  padding: 0px 5px;
-}
-
-.hidden {
-  display: none;
-}
-
-.desplegado {
-  display: inline-block;
-  background-color: #ffffff;
-  color: rgb(16, 56, 18);
-  border: 2px solid;
-  border-color:  rgb(143, 202, 146);
-  padding: 2px;
-  width: 100%;
-}
-
-.option {
-  cursor: pointer;
-  padding: 5px 3px;
-}
-
-.option:hover {
-  background-color: #b2f7a0;
-}
-
-.resumenReceta {
-  background-color: #b2f7a0;
-  color: rgb(16, 56, 18);
-  padding: 10px;
-  width: 300px;
-  height: fit-content;
-  margin-top: 10px;
-}
-/* main proveedores */
-#proveedores_form {
-  background-color: #000000;
-  height: fit-content;
-  width: fit-content;
-  text-align: center;
-  border-radius: 10px;
-  padding: 5px;
-  display: grid;
-  grid-template-columns: repeat(2,max-content);
-  margin: auto;
-}
-
-.proveedores_form_box {
-  width: 100%;
-}
-
-#proveedores_form h2{
-  color: rgb(255, 255, 255);
-  padding: 5px;
-  font-size: 1em;
-  text-transform: uppercase;
-  grid-column: 1 / 3;
-}
-
-#proveedores_form input {
-  display: inline-block;
-  padding: 10px;
-}
-
-#proveedores_form input.no_editable:focus {
-  outline: none;
-}
-
-#proveedores_form input:first-of-type {
-  border-radius: 10px 10px 0 0;
-}
-
-#proveedores_form input:last-of-type {
-  border-radius: 0 0 10px 10px;
-}
-
-#proveedores_form label {
-  color: rgb(255, 255, 255);
-  padding: 10px;
-}
-
-.link {
-  text-decoration: underline !important;
-  color: #5a5a5a;
-  cursor: pointer;
-}
-
-.boton.active {
-  background-color: rgb(184, 183, 183);
-  box-shadow: none;
-}
-
-.boton.active:hover {
-  background-color: rgb(184, 183, 183);
-  box-shadow: none;
-}
-
-.boton {
-  padding: 5px;
-  margin: 2px;
-  background-color: #ffffff;
-  border-radius: 2px;
-  width: fit-content;
-  height: fit-content;
-  display: inline-block;
-  box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
-}
-
-.boton:hover {
-  background-color: #e7e7e7;
-}
-
-
-.botones_box {
-  padding: 5px;
-}
-
-.boton.numero_prov {
-  font-weight: 600;
-}
-
-.boton.hidden {
-  display: none;
-}
 /* footer */
 
 #footer{
@@ -406,99 +244,97 @@ a {
 
 @media screen and (max-width: 350px) {
 
-    #tituloCabecera {
-      display: none;
-    }
+  #tituloCabecera {
+    display: none;
+  }
 
-    #navbar {
-      flex-wrap: wrap;
-      height: fit-content;
-    }
+  #navbar {
+    flex-wrap: wrap;
+    height: fit-content;
+  }
 
-    .navItem {
-      display: block;
-      width: 100%;
-    }
+  .navItem {
+    display: block;
+    width: 100%;
+  }
 
-    .navItem i {
-      display: inline-block;
-    }
+  .navItem i {
+    display: inline-block;
+  }
 
 }
 
 @media screen and (min-width: 480px) {
 
-    #navMenu {
-      font-size: 0.6em;
-    }
+  #navMenu {
+    font-size: 0.6em;
+  }
 
-    #header {
-      font-size: 1.3em;
-    }
+  #header {
+    font-size: 1.3em;
+  }
 
-    #footer {
-      font-size: 1.3em;
-    }
+  #footer {
+    font-size: 1.3em;
+  }
 
-    .navItem i {
-      display: inline-block;
-      padding: 10px;
-    }
-
+  .navItem i {
+    display: inline-block;
+    padding: 10px;
+  }
 }
-
 
 @media screen and (min-width: 680px) {
 
-    #logoCabecera {
-      height: 80%;
-    }
+  #logoCabecera {
+    height: 80%;
+  }
 
-    #navMenu {
-      font-size: 0.7em;
-    }
+  #navMenu {
+    font-size: 0.7em;
+  }
 
-    .navItem {
-      padding: 20px;
-    }
+  .navItem {
+    padding: 20px;
+  }
 
-    #footerLogo {
-      height: 80%;
-    }
+  #footerLogo {
+    height: 80%;
+  }
 
-    #header {
-      font-size: 1.5em;
-    }
+  #header {
+    font-size: 1.5em;
+  }
 
-    #footer {
-      font-size: 1.5em;
-    }
+  #footer {
+    font-size: 1.5em;
+  }
 }
 
 @media screen and (min-width: 1020px) {
 
-    #navbar {
-      justify-content: start;
-    }
+  #navbar {
+    justify-content: start;
+  }
 
-    #logoCabecera {
-      height: 80%;
-    }
+  #logoCabecera {
+    height: 80%;
+  }
 
-    #navMenu {
-      font-size: 0.8em;
-    }
+  #navMenu {
+    font-size: 0.8em;
+  }
 
-    #footerLogo {
-      height: 80%;
-    }
+  #footerLogo {
+    height: 80%;
+  }
 
-    #header {
-      font-size: 1.5em;
-    }
+  #header {
+    font-size: 1.5em;
+  }
 
-    #footer {
-      font-size: 1.5em;
-    }
+  #footer {
+    font-size: 1.5em;
+  }
 
 }

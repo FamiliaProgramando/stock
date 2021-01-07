@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+
+{% block extracss %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styleReceta.css') }}">
+{% endblock %}
+
+
 {% block main %}
 <main id="main">
   <form id="select-receta-form">
