@@ -72,7 +72,7 @@ class Insumo(db.Model):
     marca = db.Column("marca", db.String(50))
     cantidad = db.Column("cantidad", db.Integer(), nullable=False)
     unidad = db.Column("unidad",
-                       db.Enum(*UNIDADES, name="unidades"))
+                       db.Enum(*UNIDADES, name="unidades"), nullable=False)
     stock = db.Column("stock", db.Integer(), nullable=False)
 
     proveedores = db.relationship("InsumoProveedor", back_populates="insumo")
