@@ -358,11 +358,19 @@ class ApiTipoInsumo(Resource):
                             help="Campo obligatorio!")
         data = parser.parse_args()
 
-        tipo = TipoInsumo(nombre=data["nombre"].lower(), )
+        if not data["nombre"]:
+            return {"error": "Campo nombre vacío!"}, HTTP_RESPONSE_BAD_REQUEST
 
-        db.session.add(tipo)
-        db.session.commit()
-        return {"created": tipo.json()}, HTTP_RESPONSE_CREATED
+        try:
+            tipo = TipoInsumo(nombre=data["nombre"].lower(), )
+
+            db.session.add(tipo)
+            db.session.commit()
+            return {"created": tipo.json()}, HTTP_RESPONSE_CREATED
+        except IntegrityError:
+            return {
+                "error": "Acción no permitida. Recurso duplicado!"
+            }, HTTP_RESPONSE_BAD_REQUEST
 
 
 class ApiTipoInsumoId(Resource):
@@ -399,5 +407,10 @@ class ApiTipoInsumoId(Resource):
             db.session.commit()
             return {"deleted": tipo.json()}
 
-        except (IntegrityError, UnmappedInstanceError):
+        except IntegrityError:
+            return {
+                "error":
+                "Acción no permitida. Hay insumos asociados a este tipo_insumo!"
+            }, HTTP_RESPONSE_BAD_REQUEST
+        except UnmappedInstanceError:
             return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
