@@ -88,7 +88,7 @@ class Insumo(db.Model):
     tipo_insumo = db.relationship("TipoInsumo",
                                   backref=db.backref(
                                       "insumos",
-                                      cascade="all, delete-orphan",
+                                      # cascade="all, delete-orphan",
                                       lazy=True))
 
     proceso_id = db.Column("proceso_id",
@@ -97,7 +97,7 @@ class Insumo(db.Model):
                            nullable=False)
     proceso = db.relationship("Proceso",
                               backref=db.backref("insumos",
-                                                 cascade="all, delete-orphan",
+                                                 # cascade="all, delete-orphan",
                                                  lazy=True))
 
     def json(self):

@@ -8,6 +8,7 @@ from stock.ext.db import db
 from .models import Insumo, InsumoProveedor, Proceso, Proveedor, TipoInsumo
 
 HTTP_RESPONSE_CREATED = 201
+HTTP_RESPONSE_BAD_REQUEST = 400
 HTTP_RESPONSE_NOT_FOUND = 404
 
 
@@ -34,9 +35,9 @@ class ApiProveedor(Resource):
         parser.add_argument("pagina", type=str)
         data = parser.parse_args()
 
-        proveedor = Proveedor(nombre=data["nombre"],
+        proveedor = Proveedor(nombre=data["nombre"].capital(),
                               telefono=data["telefono"],
-                              email=data["email"],
+                              email=data["email"].lower(),
                               pagina=data["pagina"])
 
         db.session.add(proveedor)
@@ -64,11 +65,11 @@ class ApiProveedorId(Resource):
         try:
             proveedor = Proveedor.query.get(proveedor_id)
 
-            proveedor.nombre = (data["nombre"]
+            proveedor.nombre = (data["nombre"].capital()
                                 if data["nombre"] else proveedor.nombre)
             proveedor.telefono = (data["telefono"]
                                   if data["telefono"] else proveedor.telefono)
-            proveedor.email = (data["email"]
+            proveedor.email = (data["email"].lower()
                                if data["email"] else proveedor.email)
             proveedor.pagina = (data["pagina"]
                                 if data["pagina"] else proveedor.pagina)
@@ -133,10 +134,10 @@ class ApiInsumo(Resource):
                             help="Campo obligatorio!")
         data = parser.parse_args()
 
-        insumo = Insumo(nombre=data["nombre"],
-                        marca=data["marca"],
+        insumo = Insumo(nombre=data["nombre"].capital(),
+                        marca=data["marca"].capital(),
                         cantidad=data["cantidad"],
-                        unidad=data["unidad"],
+                        unidad=data["unidad"].lower(),
                         stock=data["stock"],
                         tipo_insumo_id=data["tipo_insumo_id"],
                         proceso_id=data["proceso_id"])
@@ -169,12 +170,13 @@ class ApiInsumoId(Resource):
         try:
             insumo = Insumo.query.get(insumo_id)
 
-            insumo.nombre = (data["nombre"]
+            insumo.nombre = (data["nombre"].capital()
                              if data["nombre"] else insumo.nombre)
-            insumo.marca = (data["marca"] if data["marca"] else insumo.marca)
+            insumo.marca = (data["marca"].capital()
+                            if data["marca"] else insumo.marca)
             insumo.cantidad = (data["cantidad"]
                                if data["cantidad"] else insumo.cantidad)
-            insumo.unidad = (data["unidad"]
+            insumo.unidad = (data["unidad"].lower()
                              if data["unidad"] else insumo.unidad)
             insumo.stock = (data["stock"] if data["stock"] else insumo.stock)
             insumo.tipo_insumo_id = (data["tipo_insumo_id"]
@@ -199,7 +201,8 @@ class ApiInsumoId(Resource):
 
             return {"deleted": json}
 
-        except (IntegrityError, UnmappedInstanceError):
+        # except (AttributeError, IntegrityError, UnmappedInstanceError):
+        except AttributeError:
             return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
 
 
@@ -283,11 +286,19 @@ class ApiProceso(Resource):
                             help="Campo obligatorio!")
         data = parser.parse_args()
 
-        proceso = Proceso(nombre=data["nombre"], )
+        if not data["nombre"]:
+            return {"error": "Campo nombre vacío!"}, HTTP_RESPONSE_BAD_REQUEST
 
-        db.session.add(proceso)
-        db.session.commit()
-        return {"created": proceso.json()}, HTTP_RESPONSE_CREATED
+        try:
+            proceso = Proceso(nombre=data["nombre"].lower(), )
+
+            db.session.add(proceso)
+            db.session.commit()
+            return {"created": proceso.json()}, HTTP_RESPONSE_CREATED
+        except IntegrityError:
+            return {
+                "error": "Acción no permitida. Recurso duplicado!"
+            }, HTTP_RESPONSE_BAD_REQUEST
 
 
 class ApiProcesoId(Resource):
@@ -307,14 +318,14 @@ class ApiProcesoId(Resource):
         try:
             proceso = Proceso.query.get(proceso_id)
 
-            proceso.nombre = (data["nombre"]
+            proceso.nombre = (data["nombre"].lower()
                               if data["nombre"] else proceso.nombre)
 
             db.session.add(proceso)
             db.session.commit()
             return {"updated": proceso.json()}
 
-        except (AttributeError, IntegrityError):
+        except AttributeError:
             return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
 
     def delete(self, proceso_id):
@@ -324,7 +335,12 @@ class ApiProcesoId(Resource):
             db.session.commit()
             return {"deleted": proceso.json()}
 
-        except (IntegrityError, UnmappedInstanceError):
+        except IntegrityError:
+            return {
+                "error":
+                "Acción no permitida. Hay insumos asociados a este proceso!"
+            }, HTTP_RESPONSE_BAD_REQUEST
+        except UnmappedInstanceError:
             return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
 
 
@@ -342,7 +358,7 @@ class ApiTipoInsumo(Resource):
                             help="Campo obligatorio!")
         data = parser.parse_args()
 
-        tipo = TipoInsumo(nombre=data["nombre"], )
+        tipo = TipoInsumo(nombre=data["nombre"].lower(), )
 
         db.session.add(tipo)
         db.session.commit()
@@ -366,7 +382,8 @@ class ApiTipoInsumoId(Resource):
         try:
             tipo = TipoInsumo.query.get(tipo_insumo_id)
 
-            tipo.nombre = (data["nombre"] if data["nombre"] else tipo.nombre)
+            tipo.nombre = (data["nombre"].lower()
+                           if data["nombre"] else tipo.nombre)
 
             db.session.add(tipo)
             db.session.commit()
