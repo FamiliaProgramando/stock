@@ -275,7 +275,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/{{version}}/insumo/2/proveedor",
+					"raw": "{{url}}/api/{{version}}/insumo/1/proveedor",
 					"host": [
 						"{{url}}"
 					],
@@ -283,7 +283,7 @@
 						"api",
 						"{{version}}",
 						"insumo",
-						"2",
+						"1",
 						"proveedor"
 					]
 				}
@@ -796,7 +796,7 @@
 			"response": []
 		},
 		{
-			"name": "Actualizar item",
+			"name": "Actualizar precio",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -838,7 +838,7 @@
 			"response": []
 		},
 		{
-			"name": "Deletar proceso Copy",
+			"name": "Deletar precio",
 			"request": {
 				"auth": {
 					"type": "noauth"
