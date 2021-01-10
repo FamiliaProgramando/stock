@@ -20,7 +20,7 @@ a {
 
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 /* Cabecera */
 
@@ -172,12 +172,13 @@ a {
 
 /* main */
 
-#main {
+.main {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* footer */
@@ -262,6 +263,10 @@ a {
     display: inline-block;
   }
 
+  #proveedores_form input {
+    padding: 5px;
+  }
+
 }
 
 @media screen and (min-width: 480px) {
@@ -311,10 +316,15 @@ a {
   }
 }
 
-@media screen and (min-width: 1020px) {
+@media (min-width: 1020px) {
+  #header {
+    font-size: 3em;
+    height: 80px;
+  }
 
   #navbar {
     justify-content: start;
+    height: 80px;
   }
 
   #logoCabecera {
@@ -322,19 +332,25 @@ a {
   }
 
   #navMenu {
-    font-size: 0.8em;
+    font-size: 1.8em;
+  }
+
+  #footer {
+    font-size: 3em;
+    height: 80px;
+  }
+
+  #footer h5 {
+    display: inline-block;
+    padding: 0 30px;
+  }
+
+  #footer h6 {
+    display: inline-block;
   }
 
   #footerLogo {
     height: 80%;
-  }
-
-  #header {
-    font-size: 1.5em;
-  }
-
-  #footer {
-    font-size: 1.5em;
   }
 
 }
