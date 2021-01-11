@@ -29,7 +29,7 @@ services:
     container_name: postgres
     image: postgres:latest
     restart: always
-    env_file: docker/database.conf
+    # env_file: docker/database.conf
     ports:
       - 5432:5432
     volumes:
