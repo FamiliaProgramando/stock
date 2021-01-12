@@ -13,6 +13,7 @@ let siguiente = document.getElementById("siguiente");
 // let numeros = document.querySelectorAll(".numero_prov");
 let desplegar = document.querySelectorAll(".desplegar_info")[0];
 let info_prov = document.getElementById("info_proveedor");
+let tablaInsumos = document.getElementById("lista_insumos");
 // let primero = numeros[0];
 // let segundo = numeros[1];
 // let tercero = numeros[2];
@@ -20,6 +21,9 @@ let inputs = document.querySelectorAll("#proveedores_form input");
 let botones = document.querySelectorAll('.boton');
 let cancelar = document.querySelector('.cancel');
 let guardar = document.querySelector('.ok');
+let granos = document.querySelectorAll('#lista_insumos h3')[0];
+let lupulos = document.querySelectorAll('#lista_insumos h3')[1];
+console.log(granos);
 let datos;
 let action = "";
 let actual = 1;
@@ -54,10 +58,37 @@ function cargarProveedores () {
     id = proveedores[0].id;
     end = true;
     cantprov = proveedores.length;
-    if (cantprov > 3){
-    }
+    cargarInsumo();
   })
 };
+
+function cargarInsumo () {
+  let tabla_insumos = new DocumentFragment();
+  let atributos = ["nombre", "marca", "size", "precio"];
+  let valores = ["Pale Ale", "Cargill", "25 kg", "2000"];
+  let insumo = document.createElement("div");
+  insumo.classList.add("insumo")
+  atributos.forEach(atributo => {;
+    let atributoInsumo = document.createElement("div");
+    atributoInsumo.classList.add("atributo_insumo", atributo);
+    let texto = document.createTextNode(valores[atributo]);
+    // resolver como obtener la iteracion
+    atributoInsumo.appendChild(texto);
+    insumo.appendChild(atributoInsumo);
+    console.log(atributo);
+  });
+  tabla_insumos.appendChild(insumo);
+  // fragment.childNodes[0].appendChild(atributo);
+  // fragment.childNodes[0].childNodes(0).appendChild(nombre);
+  // tablaInsumos.appendChild(fragment);
+  tablaInsumos.insertBefore(tabla_insumos, lupulos);
+  // <div class="row">
+  //           <div class="insumo">Pale Ale</div>
+  //           <div class="insumo">Cargil</div>
+  //           <div class="insumo">25 Kg</div>
+  //           <div class="insumo">2000 $</div>
+  //         </div>
+}
 
 function agregarProveedor (datos) {
   console.log(datos);
@@ -258,31 +289,64 @@ agregar.addEventListener("click", () => {
 
 anterior.addEventListener("click", () => {
   console.log("click anterior");
-  if (trioprov > 0) {
-    trioprov -= 1;
-    numeros.forEach(element => {
-      element.value -= 1
-    })
+  if (proveedor > 0) {
+    siguiente.classList.remove('inactive');
+    ultimo.classList.remove('inactive');
+    console.log(proveedor);
+    proveedor -= 1;
+    console.log(proveedor);
+    console.log(cantprov);
+    actualizarPlanilla (proveedor);
+  }
+  if (proveedor == 0) {
+    anterior.classList.add('inactive');
+    primero.classList.add('inactive');
+
   }
 });
 
 siguiente.addEventListener("click", () => {
   console.log("click siguiente");
-  if (trioprov < (cantprov/3-2)) {
-    trioprov += 1;
-    console.log(trioprov);
+  if (proveedor < cantprov - 1) {
     anterior.classList.remove('inactive');
-    numeros.forEach(element => {
-      let num = parseInt(element.innerHTML);
-      element.innerHTML = num + 3;
-    })
-  } else if (trioprov = (cantprov/3-1)) {
+    primero.classList.remove('inactive');
+    console.log(proveedor);
+    proveedor += 1;
+    console.log(proveedor);
+    console.log(cantprov);
+    actualizarPlanilla (proveedor);
+  }
+  if (proveedor == cantprov-1) {
     siguiente.classList.add('inactive');
+    ultimo.classList.add('inactive');
+  }
+});
 
-    numeros.forEach(element => {
-      let num = parseInt(element.innerHTML);
-      element.innerHTML = num + 3;
-    })
+ultimo.addEventListener("click", () => {
+  console.log("click ultimo");
+  anterior.classList.remove('inactive');
+  primero.classList.remove('inactive');
+  if (proveedor < cantprov - 1) {
+    proveedor = cantprov - 1;
+    console.log(proveedor);
+    console.log(cantprov);
+    actualizarPlanilla (proveedor);
+    siguiente.classList.add('inactive');
+    ultimo.classList.add('inactive');
+  }
+});
+
+primero.addEventListener("click", () => {
+  console.log("click primero");
+  ultimo.classList.remove('inactive');
+  siguiente.classList.remove('inactive');
+  if (proveedor > 0) {
+    proveedor = 0;
+    console.log(proveedor);
+    console.log(cantprov);
+    actualizarPlanilla (proveedor);
+    anterior.classList.add('inactive');
+    primero.classList.add('inactive');
   }
 });
 

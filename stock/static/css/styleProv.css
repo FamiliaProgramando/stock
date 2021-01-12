@@ -1,46 +1,15 @@
 /* main proveedores */
-body {
-  flex-direction: column;
-  flex-wrap: nowrap;
-  width: 100vw;
-}
-
-#header {
-  position: relative !important;
-}
-
-#navbar {
-  position: relative !important;
-  top: 0 !important;
-}
-
-#footer {
-  position: relative !important;
-}
-
 #main {
   background-color: #000000;
-  position: relative !important;
-  display: flex;
-  flex-grow: 2;
-  flex-shrink: 2;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
 }
 
 .proveedores_form_box {
   justify-content: center;
   align-items: center;
-  flex-grow: 2;
-  flex-shrink: 2;
   flex-direction: column;
   flex-wrap: nowrap;
   width: 100%;
-  height: fit-content;
-
+  height: 100%;
 }
 
 #proveedores_form {
@@ -52,8 +21,6 @@ body {
   height: 100%;
   display: flex;
   flex-wrap: nowrap;
-  flex-grow: 2;
-  flex-shrink: 2;
   flex-direction: column;
 }
 
@@ -63,9 +30,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width:100%;
+  width: 100%;
   height: fit-content;
   background-color: black;
+  overflow: hidden;
 }
 
 #menuProv {
@@ -168,6 +136,7 @@ padding: 5px;
   border-radius: 5px;
   padding: 10px;
   height: 20px;
+  overflow-x : hidden;
 }
 
 #selector_tipo_insumo {
@@ -194,6 +163,11 @@ padding: 5px;
   padding: 5px;
 }
 
+.tipo_insumo:hover{
+  background-color: #cacacad2;
+  border-radius: 50%;
+}
+
 .tipo_insumo img {
   height: 80%;
   object-fit: contain;
@@ -201,13 +175,24 @@ padding: 5px;
 
 #lista_insumos {
   display: grid;
-  grid-template-columns: repeat(4,auto);
+  /* grid-template-columns: repeat(4,auto); */
   width: 100%;
   overflow: auto;
 }
 
-#lista_insumos h3 {
+.row {
+  display: grid;
+  grid-template-columns: repeat(4,auto);
+  width: 100%;
   grid-column: 1 / 5;
+}
+
+.row:hover {
+  background-color: #2b2b2b;
+}
+
+#lista_insumos h3 {
+  /* grid-column: 1 / 5; */
   background-color: rgb(255, 248, 248);
   color: #000;
   border-radius: 5px;
@@ -227,6 +212,7 @@ padding: 4px;
   padding: 2px;
   text-align: initial;
 }
+
 /**/
 
 #proveedores_form input {
@@ -298,55 +284,31 @@ padding: 4px;
   display: none;
 }
 
-@media screen and (min-width: 1020px) {
-
+@media screen and (min-width: 900px) {
   .proveedores_form_box {
-    width: 80%;
-    font-size: 3em;
-    align-content: center;
-    padding: 80px 0;
+    width: 95%;
+    height: 97%;
   }
-
-  #navProv {
-    margin: 20px;
-  }
-
-  #insumos_proveedores {
-    margin: 20px;
-  }
-
-  .insumo {
-    padding: 20px;
-  }
-
-  .boton.flecha {
-    width: 90px;
-  }
-
-  .boton {
-    padding: 20px;
-  }
-
-  #buscador {
-    height: 90px;
-  }
-
-  #buscador i {
-    padding: 30px;
-  }
-
-  #proveedores_nombre {
-    height: 70px;
-    padding: 0 !important;
-  }
-
-  .tipo_insumo {
-    height: 80px;
-  }
-
-  #lista_insumos h3 {
-    padding: 20px;
-  }
-
 }
 
+@media screen and (min-width: 1200px) {
+  .proveedores_form_box {
+    width: 1000px;
+  }
+}
+
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  #proveedores_form {
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+  }
+  #insumos_proveedores {
+    height: 100%;
+  }
+  .proveedores_form_box {
+    height: 100px;
+    flex-grow: 2;
+    flex-shrink: 2;
+  }
+}
