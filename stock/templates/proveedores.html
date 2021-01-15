@@ -7,31 +7,115 @@
 {% block main %}
 <main id="main">
   <div class="proveedores_form_box">
-    <form id="proveedores_form">
-      <h2>Proveedores</h2>
-      <label for="nombre">Nombre</label>
-      <input id="proveedores_nombre" class="no_editable" type="text" required name="nombre" readonly>
-      <label for="telefono">Telefono</label>
-      <input id="proveedores_telefono" class="no_editable" type="text" name="telefono" readonly>
-      <label for="email">Email</label>
-      <input id="proveedores_email" class = "link no_editable" type="email" name="email" readonly>
-      <label for="pagina">Pagina Web</label>
-      <input id="proveedores_pagina" class = "link no_editable" type="url" name="pagina">
-      <div class="botones_box">
-        <div id="edit" class="boton"><i class="fas fa-pencil-alt"></i></div>
-        <div id="delete" class="boton"><i class="far fa-trash-alt"></i></div>
-        <div id="add" class="boton"><i class="fas fa-user-plus"></i></div>
+
+    <form class="formulario" id="proveedores_form">
+      <div id="navProv">
+        <h2>Proveedores</h2>
+        <div id="menuProv">
+          <div class="botones_box">
+            <div id="primero" class="boton flecha inactive"><i class="fas fa-angle-double-left"></i></div>
+            <div id="anterior" class="boton flecha inactive"><i class="fas fa-angle-left"></i></div>
+          </div>
+          <div id="buscador">
+            <div class="desplegar_info"><i class="fas fa-caret-down"></i>
+            </div>
+            <input id="proveedores_nombre" type="text" required name="nombre">
+            <div class="lupa"><i class="fas fa-search"></i></div>
+          </div>
+          <div class="botones_box">
+            <div id="siguiente" class="boton flecha"><i class="fas fa-angle-right"></i></div>
+            <div id="ultimo" class="boton flecha"><i class="fas fa-angle-double-right"></i></div>
+          </div>
+        </div>
+        <div id="info_proveedor" class="hidden">
+          <label for="telefono">Telefono</label>
+          <input id="proveedores_telefono" class="no_editable" type="text" name="telefono" readonly>
+          <label for="email">Email</label>
+          <input id="proveedores_email" class = "link no_editable" type="email" name="email" readonly>
+          <label for="pagina">Pagina Web</label>
+          <input id="proveedores_pagina" class = "link no_editable" type="url" name="pagina"></div>
       </div>
-      <div class="botones_box">
-        <div id="anterior" class="boton flecha"><i class="fas fa-angle-left"></i></div>
-        <div class="boton numero_prov active">1</div>
-        <div class="boton numero_prov">2</div>
-        <div class="boton numero_prov">3</div>
-        <div id="siguiente" class="boton flecha"><i class="fas fa-angle-right"></i></div>
-        <div class="boton cancel hidden"><i class="far fa-window-close"></i></div>
-        <div class="boton ok hidden"><i class="far fa-save"></i></div>
+      <div id="insumos_proveedores">
+        <div id="selector_tipo_insumo">
+          <div class="tipo_insumo granos"><img src="{{ url_for('static', filename='img/saco-de-trigo.svg') }}" alt="Granos"></div>
+          <div class="tipo_insumo lupulos">lupulos</div>
+          <div class="tipo_insumo sales">sales</div>
+          <div class="tipo_insumo levaduras">levadura</div>
+          <div class="tipo_insumo envasado"><i class="fas fa-wine-bottle"></i></div>
+          <div class="tipo_insumo limpieza"><i class="fas fa-soap"></i></div>
+        </div>
+        <div id="cabecera_insumos">
+          <div class="atributo_insumo">Insumo</div>
+          <div class="atributo_insumo">Marca</div>
+          <div class="atributo_insumo">Tamaño</div>
+          <div class="atributo_insumo">Precio</div>
+        </div>
+        <div id="lista_insumos">
+          <h3>Granos</h3>
+          <div class="insumo">Pisener</div>
+          <div class="insumo">Cargil</div>
+          <div class="insumo">25 Kg</div>
+          <div class="insumo">2000 $</div>
+          <h3>Lupulos</h3>
+          <div class="insumo">Cascade Arg</div>
+          <div class="insumo">Patagonia</div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">200 $</div>
+          <div class="insumo">Cascade USA</div>
+          <div class="insumo"> - </div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">450 $</div>
+          <h3>Sales</h3>
+          <div class="insumo">Cascade Arg</div>
+          <div class="insumo">Patagonia</div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">200 $</div>
+          <div class="insumo">Cascade USA</div>
+          <div class="insumo"> - </div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">450 $</div>
+          <h3>Levadura</h3>
+          <div class="insumo">Cascade Arg</div>
+          <div class="insumo">Patagonia</div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">200 $</div>
+          <div class="insumo">Cascade USA</div>
+          <div class="insumo"> - </div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">450 $</div>
+          <h3>Envasado</h3>
+          <div class="insumo">Cascade Arg</div>
+          <div class="insumo">Patagonia</div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">200 $</div>
+          <div class="insumo">Cascade USA</div>
+          <div class="insumo"> - </div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">450 $</div>
+          <h3>Limpieza</h3>
+          <div class="insumo">Cascade Arg</div>
+          <div class="insumo">Patagonia</div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">200 $</div>
+          <div class="insumo">Cascade USA</div>
+          <div class="insumo"> - </div>
+          <div class="insumo">100 g</div>
+          <div class="insumo">450 $</div>
+        </div>
+      </div>
+      <div id="botones_edicion">
+        <div class="botones_box">
+          <div id="edit" class="boton"><i class="fas fa-pencil-alt"></i></div>
+          <div id="delete" class="boton"><i class="far fa-trash-alt"></i></div>
+          <div id="add" class="boton"><i class="fas fa-user-plus"></i></div>
+        </div>
+        <div class="botones_box">
+          <div class="boton cancel hidden"><i class="far fa-window-close"></i></div>
+          <div class="boton ok hidden"><i class="far fa-save"></i></div>
+        </div>
       </div>
     </form>
+
   </div>
 </main>
 
