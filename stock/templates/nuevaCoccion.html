@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block extracss %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/stylecoccion.css') }}">
+{% endblock %}
+
+
+{% block main %}
+<main id="main">
+  <div id="navRecetas">
+    <h4>Recetas</h4>
+    <div id="selector">
+      <i class="fas fa-angle-double-left"></i>
+      <i class="fas fa-angle-left"></i>
+      <div id="desplegable">
+        <input type="text" name="" id="input">
+        <i class="fas fa-caret-down"></i>
+        <ul>
+          <h2></h2>
+        </ul>
+      </div>
+      <i class="fas fa-angle-right"></i>
+      <i class="fas fa-angle-double-right"></i>
+    </div>
+
+  </div>
+  <div id="caracteristicas">
+
+  </div>
+  <div id="indicadores">
+
+  </div>
+  <div id="insumos">
+
+  </div>
+  <div id="datos">
+
+  </div>
+  <div id="navEdit">
+    <div id="botnesEdit">
+
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extrajs %}
+  <script src="{{ url_for('static', filename='js/scriptReceta.js') }}"></script>
+{% endblock %}
