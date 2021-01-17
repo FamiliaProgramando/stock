@@ -35,7 +35,7 @@ class ApiProveedor(Resource):
         parser.add_argument("pagina", type=str)
         data = parser.parse_args()
 
-        proveedor = Proveedor(nombre=data["nombre"].capital(),
+        proveedor = Proveedor(nombre=data["nombre"].capitalize(),
                               telefono=data["telefono"],
                               email=data["email"].lower(),
                               pagina=data["pagina"])
@@ -65,7 +65,7 @@ class ApiProveedorId(Resource):
         try:
             proveedor = Proveedor.query.get(proveedor_id)
 
-            proveedor.nombre = (data["nombre"].capital()
+            proveedor.nombre = (data["nombre"].capitalize()
                                 if data["nombre"] else proveedor.nombre)
             proveedor.telefono = (data["telefono"]
                                   if data["telefono"] else proveedor.telefono)
@@ -90,6 +90,11 @@ class ApiProveedorId(Resource):
 
         except (IntegrityError, UnmappedInstanceError):
             return {"error": "Recurso inexistente!"}, HTTP_RESPONSE_NOT_FOUND
+        except AssertionError:
+            return {
+                "error":
+                "Acción no permitida. Hay insumos asociados a este proveedor!"
+            }, HTTP_RESPONSE_BAD_REQUEST
 
 
 class ApiProveedorIdInsumo(Resource):
@@ -134,8 +139,8 @@ class ApiInsumo(Resource):
                             help="Campo obligatorio!")
         data = parser.parse_args()
 
-        insumo = Insumo(nombre=data["nombre"].capital(),
-                        marca=data["marca"].capital(),
+        insumo = Insumo(nombre=data["nombre"].capitalize(),
+                        marca=data["marca"].capitalize(),
                         cantidad=data["cantidad"],
                         unidad=data["unidad"].lower(),
                         stock=data["stock"],
@@ -170,9 +175,9 @@ class ApiInsumoId(Resource):
         try:
             insumo = Insumo.query.get(insumo_id)
 
-            insumo.nombre = (data["nombre"].capital()
+            insumo.nombre = (data["nombre"].capitalize()
                              if data["nombre"] else insumo.nombre)
-            insumo.marca = (data["marca"].capital()
+            insumo.marca = (data["marca"].capitalize()
                             if data["marca"] else insumo.marca)
             insumo.cantidad = (data["cantidad"]
                                if data["cantidad"] else insumo.cantidad)
