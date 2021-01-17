@@ -3,7 +3,7 @@
 #main {
   display: grid;
   background-color: white;
-  grid-template-columns: 47.5% 20% 27.5%;
+  grid-template-columns: 47.5% 20% minmax(20%, 200px);
   grid-template-rows: 10% 40% 40% 10%;
  }
 
@@ -25,7 +25,11 @@
 }
 
 #input {
-  width: 200px;
+  width: 300px;
+}
+
+#selector {
+  margin-top: inherit;
 }
 
 #desplegable ul {
@@ -42,16 +46,94 @@
   border-radius: 8px;
   background-image: linear-gradient(to bottom right, #6d9a6b40, #6d9a6b00);
   border: solid 1px #6d9a6b;
+  text-align: center;
 }
 
 #indicadores {
   background-color: #6d9a6b00;
   width: 97.5%;
   height: 97.5%;
-  display: inline-block;
+  display: grid;
+  grid-template-columns: max-content auto max-content;
+  grid-template-rows: 1fr max-content 2fr 1fr 1fr 1fr 1fr 1fr;
   justify-self: right;
   border-radius: 8px;
   border: solid 1px #6d9a6b;
+  text-align: center;
+  padding: 10px;
+  grid-gap: 2px 2px;
+}
+
+#indicadores h3 {
+  grid-column: 1/4;
+}
+
+
+#color {
+  grid-column: 1/4;
+}
+
+
+.barra {
+  background-color: rgba(189, 189, 189, 0.75);
+  height: 6px;
+  display: block;
+  border-radius: 3px;
+  border: 1px solid white;
+  overflow: hidden;
+  box-shadow: 0 0 4px 1px #000000e6;
+}
+
+.barra span {
+  height: 6px;
+  float: left;
+  background: #3178fb;
+}
+
+#og {
+  width: 40%;
+}
+
+
+#fg {
+  width: 15%;
+}
+
+#abv {
+  width: 30%;
+}
+
+#ibu {
+  width: 20%;
+}
+
+#balance {
+  width: 42%;
+}
+
+#balanceBar {
+
+}
+
+#indicadores li {
+  list-style-type: none;
+  margin-top: 6px;
+}
+
+.valorIndicador {
+  display: contents;
+}
+
+#circuloColor {
+  grid-column: 1/4;
+  width: 50PX;
+  height: 50PX;
+  justify-self: center;
+  border-radius: 100%;
+  background-color: #F8A600;
+  border: solid rgb(102, 101, 101);
+  box-shadow: 1px 2px 6px 0px rgb(0 0 0);
+  margin-bottom: 10px;
 }
 
 #insumos {
@@ -60,6 +142,7 @@
   height: 97.5%;
   border-radius: 8px;
   border: solid 1px #6d9a6b;
+  text-align: center;
 }
 
 #datos {
@@ -70,6 +153,13 @@
   border-radius: 8px;
   border: solid 1px #6d9a6b;
   background-image: linear-gradient(to bottom right, #6d9a6b40, #6d9a6b00);
+  text-align: center;
+}
+
+h3 {
+  margin-top: 8px;
+  font-family: system-ui;
+  text-decoration: underline;
 }
 
 
@@ -92,4 +182,18 @@
   border-radius: 8px;
   border: solid 1px #6d9a6b;
   align-self: center;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-items: center;
+  align-content: center;
 }
+
+#botonesEdit i {
+  font-size: 220%;
+}
+
+
+
+
+/* Barras de progreso */
+
