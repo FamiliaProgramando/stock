@@ -14,7 +14,7 @@ def index():
 
 @bp.route("/nueva-coccion")
 def nueva_coccion():
-    return render_template("nuevaCocccion.html", title="Sierra Maestra")
+    return render_template("nuevaCoccion.html", title="Sierra Maestra")
 
 @bp.route("/envasado")
 def envasado():
