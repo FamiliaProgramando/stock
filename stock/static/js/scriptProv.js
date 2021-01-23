@@ -7,6 +7,7 @@ let prov_pagina = document.getElementById("proveedores_pagina");
 let prov_nombre = document.getElementById("proveedores_nombre");
 let prov_telefono = document.getElementById("proveedores_telefono");
 let prov_email = document.getElementById("proveedores_email");
+let buscador =  document.getElementById("buscador");
 let editar = document.getElementById("edit");
 let borrar = document.getElementById("delete");
 let agregar = document.getElementById("add");
@@ -16,6 +17,10 @@ let siguiente = document.getElementById("siguiente");
 let desplegar = document.querySelectorAll(".desplegar_info")[0];
 let info_prov = document.getElementById("info_proveedor");
 let tablaInsumos = document.getElementById("lista_insumos");
+let select = document.querySelector('.seleccion');
+let selAll = document.getElementById("selAll");
+let SelZero = document.getElementById("selzero");
+
 // let lupulos = document.querySelectorAll('#lista_insumos h3')[1];
 // let sales = document.querySelectorAll('#lista_insumos h3')[2];
 // let levaduras = document.querySelectorAll('#lista_insumos h3')[3];
@@ -27,7 +32,9 @@ let tablaInsumos = document.getElementById("lista_insumos");
 let inputs = document.querySelectorAll("#proveedores_form input");
 let botones = document.querySelectorAll('.boton');
 let cancelar = document.querySelector('.cancel');
+let borrarbus = document.querySelector('.borrar');
 let guardar = document.querySelector('.ok');
+let nuevoinsumo;
 let datos;
 let action = "";
 let proveedor = 0;
@@ -37,9 +44,36 @@ let end = false;
 let url;
 let email;
 let id;
+let checks;
 
 window.addEventListener('load', cargarProveedores);
+borrarbus.addEventListener("click", () => {
+  prov_nombre.value = "";
+  prov_nombre.focus();
+});
 
+prov_nombre.addEventListener("click", () => {
+  buscador.style.border = "solid red 1px";
+  borrarbus.style.display = "inline"
+})
+
+selAll.addEventListener("click", () => {
+  buscador.style.border = "solid red 1px";
+  borrarbus.style.display = "inline";
+  for (c of checks) {
+    c.checked = true;
+  }
+  SelZero.checked = false;
+})
+
+SelZero.addEventListener("click", () => {
+  buscador.style.border = "solid red 1px";
+  borrarbus.style.display = "inline";
+  for (c of checks) {
+    c.checked = false;
+  }
+  selAll.checked = false;
+})
 
 function actualizarPlanilla (num) {
   prov_nombre.value = proveedores[num].nombre;
@@ -349,17 +383,21 @@ async function borrarProveedor(id) {
 
 borrar.addEventListener("click", () => {
   console.log("click borrar");
-  action = 'delete';
-  borrar.classList.add('active');
-  console.log(action);
-  let r = confirm(`Esta seguro que quiere eliminar el proveedor ID: ${id} del sistema?`)
-  if (r == true) {
-    console.log(`intentando borrar proveedor ID: ${id}`);
-    borrar.classList.remove('active');
-    borrarProveedor(id);
-  } else {
-    console.log("Accion cancelada");
-    borrar.classList.remove('active');
+  if (!(action == "edit"||action == "add"||action == "delete")){
+    action = 'delete';
+    borrar.classList.add('active');
+    console.log(action);
+    let r = confirm(`Esta seguro que quiere eliminar el proveedor ID: ${id} del sistema?`)
+    if (r == true) {
+      console.log(`intentando borrar proveedor ID: ${id}`);
+      borrar.classList.remove('active');
+      action = 'guardar';
+      borrarProveedor(id);
+    } else {
+      console.log("Accion cancelada");
+      borrar.classList.remove('active');
+      action = 'cancel';
+    }
   }
 });
 
@@ -390,6 +428,8 @@ cancelar.addEventListener("click", () => {
       element.classList.add("hidden");
     }
   });
+  select.classList.add("hidden");
+  nuevoinsumo.classList.add("hidden");
   inputs.forEach(element => {
     element.setAttribute('readonly','true');
     element.classList.add('no_editable');
@@ -418,6 +458,8 @@ guardar.addEventListener("click", async () => {
   };
   // datosIns = new FormData(formulario);
   console.log(todosInsumos);
+  select.classList.add("hidden");
+  nuevoinsumo.classList.add("hidden");
   let precios = document.querySelectorAll(".atributo_insumo.precio input");
   for await (const ins of precios){
     try {
@@ -508,7 +550,6 @@ async function mostrarInsumos(idprov) {
   checkList.appendChild(texto);
   cabecera.appendChild(checkList);
     let tabla_insumos = new DocumentFragment();
-    let insumos_proveedor = [];
     let categorias = ["granos", "lúpulos", "sales", "levaduras", "envazado", "limpieza"];
     let granos = new DocumentFragment();
     let lupulos = new DocumentFragment();
@@ -543,18 +584,28 @@ async function mostrarInsumos(idprov) {
     })
     let atributos = ["nombre", "marca", "size", "precio", "ofrece"];
     try {
-      let actuales = await getinsumosProv(idprov);
       let todos =  await getinsumos();
       todosInsumos = todos.insumos;
       console.log(todosInsumos);
+      console.log(idprov);
+      let actuales;
+      if (!(idprov=="")){
+       await getinsumosProv(idprov).then(res=> {
+        actuales = res.insumos;
+        console.log(res)
+       })
+      }
+      console.log(actuales);
       for await (const ins of todos.insumos){
         let ofrece = false;
-        for await (const i of actuales.insumos){
-          if (ins.id == i.insumo_id) {
-            ofrece = true;
-            ins.precio = i.precio;
+        if (!(idprov=="")){
+          for await (const i of actuales){
+            if (ins.id == i.insumo_id) {
+              ofrece = true;
+              ins.precio = i.precio;
+            }
           }
-        };
+        }
         let insumo = document.createElement("div");
         insumo.classList.add("insumo")
         atributos.forEach(atributo => {
@@ -569,6 +620,7 @@ async function mostrarInsumos(idprov) {
             check.type = "checkbox";
             check.name = `C${ins.id}`;
             check.id = `C${ins.id}`;
+            check.classList.add("chinsumos")
             if (ofrece) {
               check.checked = true;
             }
@@ -633,6 +685,22 @@ async function mostrarInsumos(idprov) {
       tabla_insumos.appendChild(limpieza);
       tablaInsumos.innerHTML = "";
       tablaInsumos.appendChild(tabla_insumos);
+      checks = document.querySelectorAll('.chinsumos');
+      for (c of checks) {
+        c.addEventListener("click", () => {
+          if (selAll.checked) {
+            console.log("selall checked");
+            selAll.checked = false;
+          } else if(SelZero.checked) {
+            console.log("selzero checked");
+            SelZero.checked = false;
+          }
+      })
+    }
+    nuevoinsumo = document.createElement("div");
+    nuevoinsumo.id = "masinsumo";
+    nuevoinsumo.innerHTML = `<a href=/insumos><i class="fas fa-plus"></i></a>`;
+    main.appendChild(nuevoinsumo);
     } catch (error) {
       console.log(error);
     }
@@ -676,7 +744,7 @@ function desplegarInfo () {
 editar.addEventListener("click", () => {
   console.log(action);
   console.log("click editar");
-  if (!(action == "edit")){
+  if (!(action == "edit"||action == "add"||action == "delete")){
     editar.classList.add('active');
     action = 'edit';
     console.log(action);
@@ -695,7 +763,33 @@ editar.addEventListener("click", () => {
         element.classList.toggle("hidden");
       }
     })
+    select.classList.remove("hidden");
     mostrarInsumos(id).then(res=>console.log(res));
+
+    // let fragment = document.createDocumentFragment;
+    // let labelAll = document.createElement("label");
+    // let text = document.createTextNode("Seleccionar Todo");
+    // labelAll.appendChild(text);
+    // let selAll = document.createElement("input");
+    // selAll.type = "checkbox";
+    // selAll.name = `selectAll`;
+    // selAll.id = `selectAll`;
+    // let labelZero = document.createElement("label");
+    // let text = document.createTextNode("Desseleccionar Todo");
+    // labelZero.appendChild(text);
+    // let selzero = document.createElement("input");
+    // selzero.type = "checkbox";
+    // selzero.name = `selectzero`;
+    // selzero.id = `selectzero`;
+    // let div = document.createElement("div");
+    // div.id("seleccionar");
+    // div.appendChild(labelAll);
+    // div.appendChild(selAll);
+    // div.appendChild(labelZero);
+    // div.appendChild(selzero);
+
+
+
   }
 });
 
@@ -704,26 +798,31 @@ editar.addEventListener("click", () => {
 agregar.addEventListener("click", () => {
   console.log("click agregar");
   console.log(action);
-  action = 'add';
-  agregar.classList.add('active');
-  console.log(action);
-  inputs.forEach(element => {
-    element.removeAttribute('readonly');
-    element.classList.remove('no_editable');
-    element.value = '';
-    if (element.classList.contains('link')){
-      element.classList.remove('link');
-      element.classList.add('no_link');
-    }
-  })
-  tablaInsumos.innerHTML = "";
-  desplegarInfo();
-  prov_nombre.focus();
-  botones.forEach(element => {
-    if (element.classList.contains('numero_prov')||element.classList.contains('flecha')||element.classList.contains('cancel')||element.classList.contains('ok')) {
-      element.classList.toggle("hidden");
-    }
-  })
+  if (!(action == "edit"||action == "add"||action == "delete")){
+    action = 'add';
+    agregar.classList.add('active');
+    console.log(action);
+    inputs.forEach(element => {
+      element.removeAttribute('readonly');
+      element.classList.remove('no_editable');
+      element.value = '';
+      if (element.classList.contains('link')){
+        element.classList.remove('link');
+        element.classList.add('no_link');
+      }
+    })
+    tablaInsumos.innerHTML = "";
+    mostrarInsumos("");
+    desplegarInfo();
+    select.classList.remove("hidden");
+    prov_nombre.focus();
+    buscador.style.border = "solid red 1px";
+    botones.forEach(element => {
+      if (element.classList.contains('numero_prov')||element.classList.contains('flecha')||element.classList.contains('cancel')||element.classList.contains('ok')) {
+        element.classList.toggle("hidden");
+      }
+    })
+  }
 });
 
 /*Botones de numero y flechas*/

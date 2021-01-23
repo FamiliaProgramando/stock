@@ -19,7 +19,8 @@
           <div id="buscador">
             <div class="desplegar_info"><i class="fas fa-caret-down"></i>
             </div>
-            <input id="proveedores_nombre" type="text" required name="nombre">
+            <input id="proveedores_nombre" class = "no_editable" type="text" required name="nombre">
+            <div class="borrar">X</div>
             <div class="lupa"><i class="fas fa-search"></i></div>
           </div>
           <div class="botones_box">
@@ -59,6 +60,12 @@
           <div id="edit" class="boton"><i class="fas fa-pencil-alt"></i></div>
           <div id="delete" class="boton"><i class="far fa-trash-alt"></i></div>
           <div id="add" class="boton"><i class="fas fa-user-plus"></i></div>
+        </div>
+        <div class="seleccion hidden">
+          <label for="selAll">Seleccionar Todo</label>
+          <label for="selzero">Des-seleccionar Todo</label>
+          <input id="selAll" type="checkbox">
+          <input id="selzero" type="checkbox">
         </div>
         <div class="botones_box">
           <div class="boton cancel hidden"><i class="far fa-window-close"></i></div>

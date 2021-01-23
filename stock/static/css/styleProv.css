@@ -69,6 +69,7 @@
 
 #buscador i {
 padding: 5px;
+display: inline;
 }
 
 .fa-caret-down {
@@ -86,6 +87,16 @@ padding: 5px;
   flex-shrink: 2;
   overflow: hidden;
   width: 20px;
+}
+
+#proveedores_nombre:focus{
+  outline: none;
+}
+
+.borrar {
+  color: rgb(116, 115, 115);
+  display: none;
+  cursor: pointer;
 }
 
 #info_proveedor {
@@ -227,13 +238,6 @@ padding: 5px;
   background-color: #2b2b2b;
 }
 
-input[type="checkbox"]:before {
-  background-color: #2b2b2b;
-}
-
-input[type="checkbox"]:checked::before {
-  background-color: #c7c7c7;
-}
 /**/
 
 #proveedores_form input {
@@ -303,6 +307,38 @@ input[type="checkbox"]:checked::before {
 
 .boton.hidden {
   display: none;
+}
+
+.seleccion {
+  display: grid;
+  grid-template-columns: repeat(2,auto);
+  justify-items: center;
+  grid-column-gap: 15px;
+  grid-row-gap: 5px;
+}
+
+.atributo_insumo input[type="checkbox"] {
+  color:red;
+}
+
+#masinsumo {
+  position: fixed;
+  color: #e7e7e7;
+  font-size: 2em;
+  bottom: 120px;
+  right: 70px;
+}
+
+#masinsumo a:visited{
+  color: rgba(255, 255, 255, 1);
+}
+
+#masinsumo a:active{
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+#masinsumo a:link {
+  color: rgba(255, 255, 255, 1) !important;
 }
 
 @media screen and (min-width: 900px) {
