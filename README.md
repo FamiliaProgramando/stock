@@ -131,6 +131,24 @@ vagrant status
 vagrant destroy
 ```
 
+## Comandos GIT
+```
+    git init
+    git clone <url>
+    git status
+    git add nombre_archivo
+    git commit
+    git pull origin main
+    git push origin main
+    git log
+    git log --oneline --decorate --graph --all
+    git remote -v
+    git branch
+    git checkout -b <nombre>
+    git checkout <nombre>
+    git merge <nombre>
+```
+
 # API
 
 ## Proveedores
