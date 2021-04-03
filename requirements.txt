@@ -1,6 +1,7 @@
 Faker
 Flask
 flask-admin
+flask-cors
 flask-sqlalchemy
 flask-restful
 flask-login
