@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, jsonify
 
 bp = Blueprint("site", __name__)
 
@@ -43,3 +43,7 @@ def proveedores():
 @bp.route("/insumos")
 def insumos():
     return render_template("insumos.html", title="Sierra Maestra")
+
+@bp.route("/mensaje")
+def mensaje():
+    return jsonify('Nuevo Mensaje desde un servidor')
