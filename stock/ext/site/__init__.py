@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template
 from flask_cors import cross_origin
-=======
-from flask import Blueprint, render_template, jsonify
-from flask_cors import cross_origin
->>>>>>> 77c04851fdc605996b709abc97d2ace2bdf5fc89
 
 bp = Blueprint("site", __name__)
 
@@ -59,6 +54,3 @@ def proveedores():
 def insumos():
     return render_template("insumos.html", title="Sierra Maestra")
 
-@bp.route("/mensaje")
-def mensaje():
-    return jsonify('Nuevo Mensaje desde un servidor')

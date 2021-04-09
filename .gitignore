@@ -133,3 +133,4 @@ dmypy.json
 .pylintrc
 *.sw[pon]
 .vagrant/
+.dump_file
