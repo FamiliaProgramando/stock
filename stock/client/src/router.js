@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import NuevaCoccion from './pages/NuevaCoccion.vue';
 import Envasado from './pages/Envasado.vue';
-// import Home from './pages/Home.vue';
-// import InsumosCrue from './pages/InsumosCrue.vue';
-// import ProveedoresCrue from './pages/ProveedoresCrue.vue';
-// import RecetasCrue from './pages/RecetasCrue.vue';
-// import RegistroLotesCrue from './pages/RegistroLotesCrue.vue';
-// import StockCrue from './pages/StockCrue.vue';
+import Home from './pages/Home.vue';
+import InsumosCrue from './pages/InsumosCrue.vue';
+import ProveedoresCrue from './pages/ProveedoresCrue.vue';
+import RecetasCrue from './pages/RecetasCrue.vue';
+import RegistroLotesCrue from './pages/RegistroLotesCrue.vue';
+import StockCrue from './pages/StockCrue.vue';
 
 
 // const router = createRouter({
@@ -14,15 +14,6 @@ import Envasado from './pages/Envasado.vue';
 //   routes: [{ path: '/vue', redirect: '/vue/nuevacoccion' },
 //           { path: '/vue/nuevacoccion', component: NuevaCoccion },
 //           { path: '/vue/envasado', component: Envasado },
-//           { path: '/vue/Home', component: Home },
-//           { path: '/vue/insumos', component: InsumosCrue },
-//           { path: '/vue/proveedores', component: ProveedoresCrue },
-//           { path: '/vue/recetas', component: RecetasCrue },
-//           { path: '/vue/registro', component: RegistroLotesCrue },
-//           { path: '/vue/stock', component: StockCrue },
-
-
-
 //   ],
 // });
 
@@ -32,6 +23,12 @@ const routerOptions = [
   { path: '/vue', redirect: '/vue/nuevacoccion' },
   { path: '/vue/nuevacoccion', component: NuevaCoccion },
   { path: '/vue/envasado', component: Envasado },
+  { path: '/vue/Home', component: Home },
+  { path: '/vue/insumos', component: InsumosCrue },
+  { path: '/vue/proveedores', component: ProveedoresCrue },
+  { path: '/vue/recetas', component: RecetasCrue },
+  { path: '/vue/registro', component: RegistroLotesCrue },
+  { path: '/vue/stock', component: StockCrue },
 ]
 const routes = routerOptions.map(route => {
   return {
