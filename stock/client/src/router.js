@@ -20,7 +20,7 @@ import StockCrue from './pages/StockCrue.vue';
 // export default router;
 
 const routerOptions = [
-  { path: '/vue', redirect: '/vue/nuevacoccion' },
+  { path: '/vue', redirect: '/vue/Home' },
   { path: '/vue/nuevacoccion', component: NuevaCoccion },
   { path: '/vue/envasado', component: Envasado },
   { path: '/vue/Home', component: Home },

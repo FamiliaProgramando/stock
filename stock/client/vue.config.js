@@ -2,6 +2,14 @@ const path = require('path');
 
 if( process.env.NODE_ENV === "production") {
   module.exports = {
+    chainWebpack: config => {
+      config
+          .plugin('html')
+          .tap(args => {
+              args[0].title = "Sierra Maestra";
+              return args;
+          })
+    },
     assetsDir: '../../static',
     // publicPath: '',
     publicPath: undefined,
