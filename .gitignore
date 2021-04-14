@@ -134,4 +134,6 @@ dmypy.json
 *.sw[pon]
 .vagrant/
 .dump_file
-/Stock-Frontend
+Stock-Frontend
+Stock-Frontend/
+stock/ext/Stock-Frontend
