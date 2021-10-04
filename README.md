@@ -1,41 +1,3 @@
-# client
-```
-Tiene que estar instalado Nodejs y Vuejs. 
-
-https://nodejs.org/es/download/
-
-Desde la terminal de sistema colocamos:
-
-$ npm install -g vue-cli
-
-```
-### Agregar carpeta de modulos y complementos
-```
-
-dentro de stock/client
-
-
-npm install
-
-npm install --save vue-router@next
-
-npm install --save vuex@next
-```
-
-### Para correr el servidor de veu
-```
-npm run serve
-
-entrar en http://localhost:8080/vue
-```
-
-
-### Compiles luego de cambios en Veu para poder ver en Flask
-```
-npm run build
-```
-
-
 # stock
 
 ## Instalación
@@ -254,3 +216,43 @@ GET    /api/v1/proceso/id
 PUT    /api/v1/proceso/id
 DELETE /api/v1/proceso/id
 ```
+
+# client
+```
+Tiene que estar instalado Nodejs y Vuejs. 
+
+https://nodejs.org/es/download/
+
+Desde la terminal de sistema colocamos:
+
+$ npm install -g vue-cli
+
+```
+### Agregar carpeta de modulos y complementos
+```
+
+dentro de stock/client
+
+
+npm install
+
+npm install --save vue-router@next
+
+npm install --save vuex@next
+```
+
+### Para correr el servidor de veu
+```
+npm run serve
+
+entrar en http://localhost:8080/vue
+```
+
+
+### Compiles luego de cambios en Veu para poder ver en Flask
+```
+npm run build
+```
+
+
+
