@@ -241,7 +241,7 @@ npm install --save vue-router@next
 npm install --save vuex@next
 ```
 
-### Para correr el servidor de veu
+### Para correr el servidor de vue
 ```
 npm run serve
 
@@ -249,7 +249,7 @@ entrar en http://localhost:8080/vue
 ```
 
 
-### Compiles luego de cambios en Veu para poder ver en Flask
+### Compiles luego de cambios en Vue para poder ver en Flask
 ```
 npm run build
 ```
